@@ -1,0 +1,35 @@
+header{
+  color: $whiteColor;
+
+  ul{
+    list-style-type: none;
+
+    li{
+      display: inline;
+
+      a{
+        display: block;
+      }
+
+    }
+
+    li:nth-last-child(2){
+      margin-right: 50px;
+      margin-left: 50px;
+    }
+    #logo{
+      float: left;
+      font-size: 3em;
+      font-weight: bolder;
+      margin: 1%;
+    }
+    .nav-item{
+      float: right;
+      font-size: 1.3em;
+      padding: 1%;
+      padding-top: 2%;
+      margin: 5px;
+      border-bottom: 3px solid $whiteColor;
+    }
+  }
+}

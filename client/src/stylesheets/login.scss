@@ -1,0 +1,41 @@
+@import "mixins";
+section {
+  @include flex;
+  height: 70vh;
+  width: 100%;
+
+  .auth-box{
+    width: 30%;
+    height: 70%;
+    border: 2px solid #FD9927;
+    @include flex;
+
+  input{
+    width: 80%;
+    height: 15%;
+    margin: 10px;
+    font-size: 21px;
+    color: #CCCCCC;
+    border-top: 1px solid $whiteColor;
+    border-right: 1px solid $whiteColor;
+    border-bottom: 1px solid #CCCCCC;
+    border-left: 1px solid $whiteColor;
+  }
+    button{
+      width: 80%;
+      height: 12%;
+      margin: 20px;
+    }
+  }
+  button{
+    width: 30%;
+    height: 10%;
+    margin-top: 20px;
+    background-color: $mainColor;
+    border: 2px solid $mainColor;
+  }
+
+  p{
+    font-size: 0.9em;
+  }
+}

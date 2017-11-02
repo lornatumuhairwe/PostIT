@@ -1,0 +1,23 @@
+@import "general";
+@import "colors";
+@import "nav";
+@import "main";
+@import "login";
+@import "message_board";
+
+header {
+    width: 100%;
+    height: 12vh;
+    background-color: $mainColor;
+}
+
+footer{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    background-color: $footerColor;
+    p{
+        margin: 0 auto;
+    }
+}
