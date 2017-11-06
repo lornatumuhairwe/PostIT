@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   Message.associate = (model) => {
-    Message.belongsTo(model.Group, { onDelete: 'CASCADE' });
-    Message.belongsTo(model.User, { onDelete: 'CASCADE' });
+    Message.belongsTo(model.Group, { foreignKey: 'group_id', targetKey: 'id',onDelete: 'CASCADE' });
+    Message.belongsTo(model.User, { foreignKey: 'user_id',targetKey: 'id',onDelete: 'CASCADE' });
   };
   return Message;
 };

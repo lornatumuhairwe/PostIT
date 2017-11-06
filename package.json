@@ -21,6 +21,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "chai": "^4.1.2",
+    "eslint": "^4.10.0",
+    "expect": "^21.2.1",
     "express": "^4.16.2",
     "mocha": "^4.0.1",
     "morgan": "^1.9.0",
@@ -30,6 +32,8 @@
     "sequelize-cli": "^3.0.0"
   },
   "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "nodemon": "^1.12.1"
   }
 }
