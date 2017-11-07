@@ -4,8 +4,8 @@
   "description": "PostIt is a simple application that allows friends and colleagues create groups for notifications. This way one person can post notifications to everyone by sending a message once. The application allows people create accounts, create groups and add registered users to the groups, and then send messages out to these groups whenever they want.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "start": "nodemon app.js",
+    "test": "export NODE_ENV=test; ./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -21,15 +21,25 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "chai": "^4.1.2",
+    "dotenv": "^4.0.0",
     "eslint": "^4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "expect": "^21.2.1",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "mocha": "^4.0.1",
     "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
     "sequelize": "^4.22.5",
-    "sequelize-cli": "^3.0.0"
+    "sequelize-cli": "^3.0.0",
+    "supertest": "^3.0.0"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",
