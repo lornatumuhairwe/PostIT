@@ -15,12 +15,17 @@ module.exports = {
       })
       .catch(error => res.status(400).send(error));
   },
+  login(req, res) {
+    res.status(200).send({
+      message: 'login success!',
+    });
+  }
 };
 
 // module.exports = {
 //   login(req, res) {
 //     res.status(200).send({
-//       message: 'Welcome to the Login page!',
+//       message: 'login success!',
 //     });
 //   }
 // };

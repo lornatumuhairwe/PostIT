@@ -1,4 +1,4 @@
-const authController = require('../controllers').authentication;
+const userController = require('../controllers').user;
 const express = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -12,11 +12,13 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/user/signup', authController.create);
+router.post('/user/signup', userController.create);
+router.post('/user/signin', userController.login);
 // router.post(
 //   '/user/signin',
 //   passport.authenticate('local',
-//       { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true, authController.login})
+//       { successRedirect: '/', failureRedirect: '/users/login',
+// failureFlash: true, authController.login})
 //
 // );
 

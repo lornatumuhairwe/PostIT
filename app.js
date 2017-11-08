@@ -34,6 +34,6 @@ app.get('*', (req, res) => res.status(200).send({
 const port = parseInt(process.env.PORT, 10) || 5000;
 app.set('port', port);
 
-app.listen(port);
+const server = app.listen(port);
 
-module.exports = app;
+module.exports = server;

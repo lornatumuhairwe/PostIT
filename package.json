@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "export NODE_ENV=test; nyc ./node_modules/.bin/mocha --reporter=html --reporter=text --reporter spec",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "export NODE_ENV=test; nyc ./node_modules/.bin/mocha --reporter=html --reporter=text --reporter spec"
   },
   "repository": {
     "type": "git",
