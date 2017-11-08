@@ -32,11 +32,6 @@ module.exports = (sequelize, DataTypes) => {
         user.password = bcrypt.hashSync(user.password, salt);
       }
     },
-    instanceMethods: {
-      validPassword(password) {
-        return bcrypt.compareSync(password, this.password);
-      }
-    }
   });
 
   User.associate = (models) => {
@@ -46,6 +41,8 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Message);
   };
 
-
+  User.prototype.verifyPassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
+  };
   return User;
 };

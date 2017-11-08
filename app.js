@@ -5,7 +5,6 @@ const session = require('express-session');
 const passport = require('passport');
 const dotenv = require('dotenv');
 
-
 dotenv.load();
 
 const users = require('./server/routes/index');
