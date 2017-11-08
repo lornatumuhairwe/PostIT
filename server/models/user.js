@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
@@ -23,6 +25,18 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       },
     }
+  }, {
+    hooks: {
+      beforeCreate: (user) => {
+        const salt = bcrypt.genSaltSync();
+        user.password = bcrypt.hashSync(user.password, salt);
+      }
+    },
+    instanceMethods: {
+      validPassword(password) {
+        return bcrypt.compareSync(password, this.password);
+      }
+    }
   });
 
   User.associate = (models) => {
@@ -32,24 +46,6 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Message);
   };
 
-  // Execute before each user.save() call
-  // User.beforeCreate(user, (callback) => {
-  //   const user = this;
-  //
-  //   // Break out if the password hasn't changed
-  //   if (!user.isModified('password')) return callback();
-  //
-  //   // Password changed so we need to hash it
-  //   bcrypt.genSalt(5, (err, salt) => {
-  //     if (err) return callback(err);
-  //
-  //     bcrypt.hash(user.password, salt, null, (err, hash) => {
-  //       if (err) return callback(err);
-  //       user.password = hash;
-  //       callback();
-  //     });
-  //   });
-  // });
 
   return User;
 };

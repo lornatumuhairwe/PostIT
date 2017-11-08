@@ -13,7 +13,9 @@ module.exports = {
       .then((user) => {
         res.status(201).send(user);
       })
-      .catch(error => res.status(400).send(error));
+      .catch((error) => {
+        res.status(400).send(error);
+      });
   },
   login(req, res) {
     res.status(200).send({
