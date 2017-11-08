@@ -1,7 +1,11 @@
 language: node_js
-sudo: false
+sudo: required
 node_js:
   - "8.6"
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database postit_test;' -U postgres
 install:
   - npm install
 script:
