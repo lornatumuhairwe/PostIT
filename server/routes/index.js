@@ -1,9 +1,9 @@
 const userController = require('../controllers').user;
+const groupController = require('../controllers').group;
+var authController = require('../controllers/authentication');
 const express = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
-
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -14,12 +14,6 @@ router.get('/', (req, res) => {
 
 router.post('/user/signup', userController.create);
 router.post('/user/signin', userController.login);
-// router.post(
-//   '/user/signin',
-//   passport.authenticate('local',
-//       { successRedirect: '/', failureRedirect: '/users/login',
-// failureFlash: true, authController.login})
-//
-// );
+router.route('/group').post(authController.isAuthenticated, groupController.create);
 
 module.exports = router;

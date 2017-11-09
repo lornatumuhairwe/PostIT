@@ -49,7 +49,7 @@ describe('User authentication', () => {
           password: '1234567890'
         }).end((err, res) => {
           expect(res.status).to.equal(200);
-          expect(res.body.message).to.equal('login success!');
+          expect(res.body.message).to.equal('Login success!');
           done();
         });
     });
