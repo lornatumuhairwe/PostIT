@@ -15,5 +15,7 @@ router.get('/', (req, res) => {
 router.post('/user/signup', userController.create);
 router.post('/user/signin', userController.login);
 router.route('/group').post(authController.isAuthenticated, groupController.create);
+router.route('/group/:group_id/user').post(authController.isAuthenticated, groupController.addUserToGroup);
+router.route('/group/:group_id/message').post(authController.isAuthenticated, groupController.postMessageToGroup);
 
 module.exports = router;
