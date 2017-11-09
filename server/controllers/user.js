@@ -22,7 +22,6 @@ module.exports = {
       password = req.body.password;
 
     User.findOne({ where: { username } }).then((user) => {
-
       if (!user) {
         res.status(404).send({
           message: 'User not found',

@@ -40,13 +40,24 @@ module.exports = {
 
   postMessageToGroup(req, res) {
     return Message.create({
-      group_id: req.params.group_id,
-      user_id: req.body.user_id,
+      GroupId: req.params.group_id,
+      UserId: req.body.user_id,
       body: req.body.message_body
     }).then((message_details) => {
       res.status(201).send({
         message: 'New message sent to group',
         message_details
+      });
+    }).catch((error) => {
+      res.status(400).send(error);
+    });
+  },
+
+  getAllGroupMessages(req, res) {
+    return Message.findAll({ where: { GroupId: req.params.group_id } }).then((messages) => {
+      res.status(201).send({
+        message: 'These are the messages in this group',
+        messages
       });
     }).catch((error) => {
       res.status(400).send(error);
