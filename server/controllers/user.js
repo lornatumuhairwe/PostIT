@@ -14,7 +14,20 @@ module.exports = {
         res.status(201).send(user);
       })
       .catch((error) => {
-        res.status(400).send(error);
+        if (error.errors[0].message === 'username must be unique') {
+          res.status(400).send({
+            message: 'Username is already taken. Please choose another one.'
+          });
+        } else if (error.errors[0].message === 'Validation isEmail on email failed') {
+          res.status(400).send({
+            message: 'Please enter a valid email.'
+          });
+        } else {
+          res.status(400).send({
+            error: error.errors[0].message,
+            message: 'This error occurred during signup.'
+          });
+        }
       });
   },
   login(req, res) {
@@ -28,7 +41,7 @@ module.exports = {
         });
       } else if (!user.verifyPassword(password)) {
         res.status(404).send({
-          message: 'User with invalid password',
+          message: 'Invalid password',
         });
       } else {
         req.session.user = user.dataValues;
