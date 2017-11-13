@@ -5,7 +5,7 @@ const User = require('../server/models').User;
 
 
 after(() => {
-  app.close(() => { console.log('Doh :('); });
+  app.close(() => { console.log('Doh :('); });// exit app
 });
 
 describe('User authentication', () => {
@@ -118,4 +118,3 @@ describe('User authentication', () => {
     });
   });
 });
-

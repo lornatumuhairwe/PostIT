@@ -1,6 +1,7 @@
 const Group = require('../models').Group;
 const GroupMembers = require('../models').GroupMembers;
 const Message = require('../models').Message;
+const User = require('../models').User;
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
 
@@ -25,28 +26,74 @@ module.exports = {
   },
 
   addUserToGroup(req, res) {
-    return GroupMembers.create({
-      group_id: req.params.group_id,
-      user_id: req.body.user_id
+    // first check if group with that id exists and user with the is exists, then add user to group
+    GroupMembers.findOne({
+      where: {
+        user_id: req.user.dataValues.id,
+        group_id: req.params.group_id
+      }
     }).then((member) => {
-      res.status(201).send({
-        message: 'New user added to group',
-        member
-      });
-    }).catch((error) => {
-      res.status(400).send(error);
+      // console.log('check if user is member of group', member);
+      if (member) {
+        GroupMembers.findOne({
+          where: {
+            user_id: req.body.user_id,
+            group_id: req.params.group_id
+          }
+        }).then((not_member) => {
+          if (!not_member) {
+            GroupMembers.create({
+              group_id: req.params.group_id,
+              user_id: req.body.user_id // id of user to be added to group
+            }).then((member) => {
+              res.status(201).send({
+                message: 'New user added to group',
+                member
+              });
+            }).catch((error) => {
+              res.status(400).send(error);
+            });
+          } else {
+            res.status(400).send({
+              message: 'User already part of the group.'
+            });
+          }
+          // console.log('check if user to be added is member of group vvv', member);
+        });
+      } else {
+        res.status(400).send({
+          message: 'You are not authorized to add user to group'
+        });
+      }
     });
   },
 
   postMessageToGroup(req, res) {
-    return Message.create({
-      GroupId: req.params.group_id,
-      UserId: req.body.user_id,
-      body: req.body.message_body
-    }).then((message_details) => {
-      res.status(201).send({
-        message: 'New message sent to group',
-        message_details
+    // first check if group with that id exists and user is a member and then post message to group
+    GroupMembers.findOne({
+      where: {
+        user_id: req.user.dataValues.id,
+        group_id: req.params.group_id
+      }
+    }).then((member) => {
+      // console.log('check if user is member of group', member);
+      if (member) {
+        return Message.create({
+          GroupId: req.params.group_id,
+          // UserId: req.body.user_id,
+          UserId: req.user.dataValues.id,
+          body: req.body.message_body
+        }).then((message_details) => {
+          res.status(201).send({
+            message: 'New message sent to group',
+            message_details
+          });
+        }).catch((error) => {
+          res.status(400).send(error);
+        });
+      }
+      res.status(401).send({
+        message: 'You cannot post a message to agroup you dont belong to'
       });
     }).catch((error) => {
       res.status(400).send(error);
@@ -54,13 +101,61 @@ module.exports = {
   },
 
   getAllGroupMessages(req, res) {
-    return Message.findAll({ where: { GroupId: req.params.group_id } }).then((messages) => {
-      res.status(201).send({
-        message: 'These are the messages in this group',
-        messages
+    // first check if group with that id exists and user is a member and then get messages in group
+    console.log(req.user);
+    GroupMembers.findOne({
+      where: {
+        user_id: req.user.dataValues.id,
+        group_id: req.params.group_id
+      }
+    }).then((member) => {
+      // console.log('check if user is member of group', member);
+      if (member) {
+        return Message.findAll({ where: { GroupId: req.params.group_id } }).then((messages) => {
+          res.status(201).send({
+            message: 'These are the messages in this group',
+            messages
+          });
+        }).catch((error) => {
+          res.status(400).send(error);
+        });
+      }
+      res.status(401).send({
+        message: 'You cannot get messages of group you dont belong to'
       });
-    }).catch((error) => {
-      res.status(400).send(error);
-    });
+    })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  getUserGroups(req, res) {
+    // first check if group with that id exists and user is a member and then get messages in group
+    const user_groups = [];
+    GroupMembers.findAll({
+      where: {
+        user_id: req.user.dataValues.id,
+      }
+    }).then((groups) => {
+      for (let group = 0, groupLength = groups.length; group < groupLength; group += 1) {
+        // if (arr[i].b == value) return arr[i];
+        console.log(groups[group].group_id);
+        Group.findOne({
+          where: {
+            id: groups[group].group_id
+          }
+        }).then((group) => {
+          user_groups.push({ name: group.name, id: group.id });
+          console.log('user group', { name: group.name, id: group.id }, user_groups);
+        });
+      }
+      res.status(200).send({
+        groups,
+        message: 'Here are the groups you belong to.',
+        user_groups
+      });
+    })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
   },
 };

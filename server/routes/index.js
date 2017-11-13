@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   res.status(200).send({
-    message: 'Welcome to the Todos API!',
+    message: 'Welcome to the PostIt API!',
   });
 });
 
@@ -18,5 +18,6 @@ router.route('/group').post(authController.isAuthenticated, groupController.crea
 router.route('/group/:group_id/user').post(authController.isAuthenticated, groupController.addUserToGroup);
 router.route('/group/:group_id/message').post(authController.isAuthenticated, groupController.postMessageToGroup);
 router.route('/group/:group_id/messages').get(authController.isAuthenticated, groupController.getAllGroupMessages);
+router.route('/groups').get(authController.isAuthenticated, groupController.getUserGroups);
 
 module.exports = router;
