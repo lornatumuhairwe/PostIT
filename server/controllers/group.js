@@ -4,6 +4,7 @@ const Message = require('../models').Message;
 const User = require('../models').User;
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
+const asyncLoop = require('node-async-loop');
 
 module.exports = {
   create(req, res) {
@@ -136,26 +137,27 @@ module.exports = {
         user_id: req.user.dataValues.id,
       }
     }).then((groups) => {
-      for (let group = 0, groupLength = groups.length; group < groupLength; group += 1) {
-        // if (arr[i].b == value) return arr[i];
-        console.log(groups[group].group_id);
+      (function getGroup(index) {
+        if (index >= groups.length) {
+          res.status(200).send({
+            message: 'Here are the groups you belong to.',
+            user_groups
+          });
+          return;
+        }
+        // fetchEntry(group.entries[index])
         Group.findOne({
           where: {
-            id: groups[group].group_id
+            id: groups[index].group_id
           }
-        }).then((group) => {
-          user_groups.push({ name: group.name, id: group.id });
-          console.log('user group', { name: group.name, id: group.id }, user_groups);
-        });
-      }
-      res.status(200).send({
-        groups,
-        message: 'Here are the groups you belong to.',
-        user_groups
-      });
-    })
-      .catch((error) => {
-        res.status(400).send(error);
-      });
+        })
+          .then((group) => {
+            user_groups.push({ name: group.name, id: group.id });
+            getGroup(index + 1);
+          });
+      }(0));
+    }).catch((error) => {
+      res.status(400).send(error);
+    });
   },
 };
