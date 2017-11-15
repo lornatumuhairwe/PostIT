@@ -4,6 +4,13 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const dotenv = require('dotenv');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('./webpack.config.dev.js');
+
+const compiler = webpack(config);
+
 
 dotenv.load();
 
@@ -25,9 +32,18 @@ app.use(passport.session());
 
 app.use('/api', users);
 
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+  stats: { colors: true }
+}));
+
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome to the beginning of nothingness.',
+}));
+
+app.use(webpackHotMiddleware(compiler, {
+  log: console.log
 }));
 
 const port = parseInt(process.env.PORT, 10) || 5000;
