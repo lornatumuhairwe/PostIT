@@ -3,6 +3,20 @@
 
 PostIt is a simple application that allows friends and colleagues create groups for notifications. This way one person can post notifications to everyone by sending a message once. The application allows people create accounts, create groups and add registered users to the groups, and then send messages out to these groups whenever they want.
 
+This repo contains both the front-end and the back-end that are implemented in the `client` and `server` directories respectively. 
+
+The front end is built using react and redux and it consumes the API from the backend. The table below shows the endpoints that are implemented in the backend.
+
+| Endpoint                                | Functionality                   |
+|:---------------------------------------:|:-------------------------------:|
+| [POST /api/user/signup](#)              | User signup                     |
+| [POST /api/user/signin](#)              | User signin                     |
+| [POST /api/group](#)                    | Create broadcast groups         |
+| [GET /api/groups](#)                    | Get users broadcast groups      |
+| [POST /api/group/<group_id>/user](#)    | add other users to groups       |
+| [POST /api/group/<group_id>/message](#) | post messages to created groups |
+| [GET /api/group/<group_id>/messages](#) | Create broadcast groups         |
+
 ## Requirements
 
 - [Node](https://nodejs.org/en/)
