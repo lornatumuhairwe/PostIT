@@ -5,7 +5,7 @@ PostIt is a simple application that allows friends and colleagues create groups 
 
 This repo contains both the front-end and the back-end that are implemented in the `client` and `server` directories respectively. 
 
-The front end is built using react and redux and it consumes the API from the backend. The table below shows the endpoints that are implemented in the backend.
+The front end is built using react and redux and it consumes the API from the backend that is built with Node.js (express framework). The table below shows the endpoints that are implemented in the backend.
 
 | Endpoint                                | Functionality                   |
 |:---------------------------------------:|:-------------------------------:|

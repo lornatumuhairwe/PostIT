@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -38,9 +39,12 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('*', (req, res) => res.status(200).send({
-  message: 'Welcome to the beginning of nothingness.',
-}));
+// app.get('*', (req, res) => res.status(200).send({
+//   message: 'Welcome to the beginning of nothingness.',
+// }));
+app.use('*', function(req, res) {
+  res.sendFile(path.resolve(__dirname, 'client', 'index.html'));
+});
 
 app.use(webpackHotMiddleware(compiler, {
   log: console.log
