@@ -9,6 +9,7 @@ require('../../src/stylesheets/style.scss');
 export const App = () => (
   <div>
     <Switch>
+        {/*{ render components on different routes}*/}
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/login" component={Login} />

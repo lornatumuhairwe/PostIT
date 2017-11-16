@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 require('../../../src/stylesheets/style.scss');
 
@@ -7,8 +8,8 @@ export const Login = () => (
     <header>
       <ul>
         <li id="logo"><a>PostIt</a></li>
-        <li className="nav-item"><a>SIGN UP</a></li>
-        <li className="nav-item"><a>Why PostIt?</a></li>
+        <li className="nav-item"><Link to="/signup">SIGN UP</Link></li>
+        <li className="nav-item"><Link to="/">Why PostIt?</Link></li>
       </ul>
     </header>
     <section>

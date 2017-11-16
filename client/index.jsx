@@ -6,10 +6,10 @@ import { App } from './app/components/app';
 
 const app = document.getElementById('app');
 ReactDOM.render(
+    // setup react router
   (<BrowserRouter>
-    <div>
-      <App />
-    </div>
-  </BrowserRouter>),
+    <App />
+   </BrowserRouter>
+  ),
     app
 );
