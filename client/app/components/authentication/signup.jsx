@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 require('../../../src/stylesheets/style.scss');
 
 
-export const Signup = () => (
+export const Signup = ({ todos }) => (
   <div>
     <header>
       <ul>
@@ -21,6 +22,15 @@ export const Signup = () => (
         <button>SIGN UP</button>
       </div>
       <button>LOGIN</button>
+      {todos.map(todo => <p key={todo}>{todo}</p>)}
     </section>
   </div>
 );
+
+function mapStateToProps(todos) {
+  console.log('%%%%%%%%%%%%%%%', todos);
+  return {
+  };
+}
+
+export default connect(mapStateToProps)(Signup);
