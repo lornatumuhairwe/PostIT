@@ -6,7 +6,7 @@ import { signup } from '../../actions/authentication';
 require('../../../src/stylesheets/style.scss');
 
 
-export const Signup = ({ state, dispatch }) => (
+export const Signup = ({ signup }) => (
   <div>
     <header>
       <ul>
@@ -28,11 +28,11 @@ export const Signup = ({ state, dispatch }) => (
             const passwordValue = document.getElementById('password').value;
             const confirmPasswordValue = document.getElementById('confirm_password').value;
             if (passwordValue === confirmPasswordValue) {
-                dispatch(signup({
+                signup({
                     username: usernameValue,
                     email: emailValue,
                     password: passwordValue
-                }));
+                });
             } else {
                 alert('confirm password doesn"t match password');
             }
@@ -46,9 +46,17 @@ export const Signup = ({ state, dispatch }) => (
 );
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     state
   };
 }
 
-export default connect(mapStateToProps)(Signup);
+const mapDispatchToProps = dispatch =>
+  (
+    {
+      signup: () => { dispatch(signup()); }
+    }
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
