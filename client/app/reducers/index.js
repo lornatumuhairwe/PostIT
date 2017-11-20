@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
-import logger, { createLogger } from 'redux-logger';
+import { createLogger } from 'redux-logger';
+import promiseMiddleware from 'redux-promise-middleware';
+
 import authenticationActions from './authentication';
 
 const loggerMiddleware = createLogger();
 
-export default createStore(authenticationActions, applyMiddleware(loggerMiddleware));
+export default createStore(authenticationActions, applyMiddleware(promiseMiddleware(), loggerMiddleware));

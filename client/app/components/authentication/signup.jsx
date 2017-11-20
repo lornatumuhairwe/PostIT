@@ -33,6 +33,7 @@ export const Signup = ({ signup }) => (
                     email: emailValue,
                     password: passwordValue
                 });
+                //signup(usernameValue);
             } else {
                 alert('confirm password doesn"t match password');
             }
@@ -46,16 +47,15 @@ export const Signup = ({ signup }) => (
 );
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     state
   };
 }
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   (
     {
-      signup: () => { dispatch(signup()); }
+      signup: (credentials) => { dispatch(signup(credentials)); }
     }
   );
 
