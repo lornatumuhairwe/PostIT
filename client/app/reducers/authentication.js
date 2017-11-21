@@ -1,12 +1,17 @@
 import { combineReducers } from 'redux';
 import initialState from '../initialState';
-import { SIGNUP } from '../actionTypes';
+import { SIGNIN, SIGNUP } from '../actionTypes';
 
-function signup(state = initialState.userAuth, action) {
+function authentication(state = initialState.userAuth, action) {
   switch (action.type) {
     case SIGNUP:
       return {
-        cookie: '######',
+        cookie: '',
+        isAuthenticated: false
+      };
+    case SIGNIN:
+      return {
+        cookie: '####',
         isAuthenticated: true
       };
     default:
@@ -31,7 +36,7 @@ function signup(state = initialState.userAuth, action) {
 // }
 
 const authenticationActions = combineReducers({
-  signup
+  authentication
 });
 
 export default authenticationActions;

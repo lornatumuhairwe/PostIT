@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { signup } from '../../actions/authentication';
 
 require('../../../src/stylesheets/style.scss');
 
 
-export const Signup = ({ signup }) => (
+const Signup = ({ signup }) => (
   <div>
     <header>
       <ul>
@@ -33,7 +31,6 @@ export const Signup = ({ signup }) => (
                     email: emailValue,
                     password: passwordValue
                 });
-                //signup(usernameValue);
             } else {
                 alert('confirm password doesn"t match password');
             }
@@ -46,17 +43,4 @@ export const Signup = ({ signup }) => (
   </div>
 );
 
-function mapStateToProps(state) {
-  return {
-    state
-  };
-}
-
-const mapDispatchToProps = (dispatch) =>
-  (
-    {
-      signup: (credentials) => { dispatch(signup(credentials)); }
-    }
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default Signup;

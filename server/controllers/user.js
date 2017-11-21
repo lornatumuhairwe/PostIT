@@ -11,7 +11,10 @@ module.exports = {
         password: req.body.password,
       })
       .then((user) => {
-        res.status(201).send(user);
+        res.status(201).send({
+          user,
+          message: 'Signup success'
+        });
       })
       .catch((error) => {
         if (error.errors[0].message === 'username must be unique') {

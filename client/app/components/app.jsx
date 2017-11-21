@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import Signup from './authentication/signup';
+import Signup from '../containers/authentication/signup';
 import { Login } from './authentication/login';
 import { Home } from './home';
 

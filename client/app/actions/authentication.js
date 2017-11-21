@@ -9,8 +9,16 @@ export function signup(credentials) {
       email: credentials.email,
       password: credentials.password
     }).then((response) => {
-      console.log('status *******************', response.data);
-    }).catch(err => console.log(err)),
+      const { data } = response;
+      return data;
+      // console.log('status *******************', /*data.message.startsWith('Username is already taken')*/);
+      // if (data.message.startsWith('Username is already taken')) {
+      //   throw  new Error(data.message);
+      // }
+    }).catch((err) => {
+      // console.log(err);
+      throw err;
+    })
   };
 }
 
