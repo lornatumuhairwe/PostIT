@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 require('../../../src/stylesheets/style.scss');
 
-export const Login = () => (
+const Login = ({ signin }) => (
   <div>
     <header>
       <ul>
@@ -14,12 +14,25 @@ export const Login = () => (
     </header>
     <section>
       <div className="auth-box">
-        <input type="text" placeholder="Username or Email" />
-        <input type="password" placeholder="Password" />
-        <button>LOGIN</button>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button onClick={(e) => {
+            e.preventDefault();
+            const usernameValue = document.getElementById("username").value;
+            const passwordValue = document.getElementById("password").value;
+            signin({
+                username: usernameValue,
+                password: passwordValue
+            });
+            }
+        }
+        >LOGIN
+        </button>
         <p>Forgot password?</p>
       </div>
       <button>SIGN UP</button>
     </section>
   </div>
 );
+
+export default Login;

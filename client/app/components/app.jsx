@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import Signup from '../containers/authentication/signup';
-import { Login } from './authentication/login';
+import Login from '../containers/authentication/login';
+// import { Login } from './authentication/login';
 import { Home } from './home';
 
 require('../../src/stylesheets/style.scss');

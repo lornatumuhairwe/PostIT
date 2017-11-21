@@ -28,6 +28,11 @@ export function signin(credentials) {
     payload: axios.post('api/user/signin', {
       username: credentials.username,
       password: credentials.password
-    }).then().catch(),
+    }).then((response) => {
+      const { data } = response;
+      return data;
+    }).catch((err) => {
+      throw err;
+    }),
   };
 }
