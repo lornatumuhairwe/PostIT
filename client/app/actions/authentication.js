@@ -11,7 +11,8 @@ export function signup(credentials) {
     }).then((response) => {
       const { data } = response;
       return data;
-      // console.log('status *******************', /*data.message.startsWith('Username is already taken')*/);
+      // console.log('status *******************',
+      // /*data.message.startsWith('Username is already taken')*/);
       // if (data.message.startsWith('Username is already taken')) {
       //   throw  new Error(data.message);
       // }

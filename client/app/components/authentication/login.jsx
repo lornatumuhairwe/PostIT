@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 require('../../../src/stylesheets/style.scss');
 
-const Login = ({ signin }) => (
+const Login = ({ isAuthenticated, signin, history }) => (
   <div>
+      { console.log(isAuthenticated)}
     <header>
       <ul>
         <li id="logo"><a>PostIt</a></li>

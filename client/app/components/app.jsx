@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Signup from '../containers/authentication/signup';
 import Login from '../containers/authentication/login';
-// import { Login } from './authentication/login';
 import { Home } from './home';
+import Groups from "./messageBoard/groups";
 
 require('../../src/stylesheets/style.scss');
 
@@ -14,6 +14,7 @@ export const App = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/groups" component={Groups} />
     </Switch>
   </div>
 );

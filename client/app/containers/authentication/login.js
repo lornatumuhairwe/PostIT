@@ -5,7 +5,7 @@ import { signin } from '../../actions/authentication';
 
 function mapStateToProps(state) {
   return {
-    state
+    isAuthenticated: state.userAuth.isAuthenticated
   };
 }
 
