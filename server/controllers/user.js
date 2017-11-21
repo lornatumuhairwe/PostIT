@@ -1,6 +1,7 @@
 const User = require('../models').User;
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
+const encoder = require('./authentication');
 
 module.exports = {
   create(req, res) {
@@ -48,9 +49,11 @@ module.exports = {
         });
       } else {
         req.session.user = user.dataValues;
-        console.log(req.session.user.id);
+        // console.log(req.session.user.id);
+        // console.log(encoder.encode(`${username}:${password}`));
         res.status(200).send({
           message: 'Login success!',
+          cookie: encoder.encode(`${username}:${password}`)
         });
       }
     });
