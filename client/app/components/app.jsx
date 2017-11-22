@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Signup from '../containers/authentication/signup';
-import Login from '../containers/authentication/login';
+import LoginContainer from '../containers/authentication/login';
 import { Home } from './home';
 import Groups from "./messageBoard/groups";
 
@@ -13,7 +13,7 @@ export const App = () => (
       {/* { render components on different routes} */}
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={Signup} />
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/login" component={LoginContainer} />
       <Route exact path="/groups" component={Groups} />
     </Switch>
   </div>

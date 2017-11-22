@@ -1,8 +1,7 @@
-import { combineReducers } from 'redux';
 import initialState from '../initialState';
 import { SIGNIN, SIGNUP } from '../actionTypes';
 
-function authentication(state = initialState.userAuth, action) {
+export function authentication(state = initialState.userAuth, action) {
   switch (action.type) {
     case SIGNUP:
       return {
@@ -24,7 +23,7 @@ function authentication(state = initialState.userAuth, action) {
   }
 }
 
-function loading(state = initialState.loading, action) {
+export function loading(state = initialState.loading, action) {
   switch (action.type) {
     case 'SIGNUP_PENDING':
       return { loading: true };
@@ -43,25 +42,4 @@ function loading(state = initialState.loading, action) {
   }
 }
 
-// export default function (state = initialState, action) {
-//   switch (action.type) {
-//     case SIGNUP:
-//       return {
-//         ...state,
-//         userAuth: {
-//           ...state.userAuth,
-//           cookie: '######',
-//           isAuthenticated: true
-//         }
-//       };
-//     default:
-//       return state;
-//   }
-// }
 
-const authenticationActions = combineReducers({
-  loading,
-  authentication
-});
-
-export default authenticationActions;

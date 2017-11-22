@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { SIGNIN, SIGNUP } from '../actionTypes';
 
+
 export function signup(credentials) {
   return {
     type: SIGNUP,

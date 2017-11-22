@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 require('../../../src/stylesheets/style.scss');
 
-const Login = ({ isAuthenticated, signin, history }) => (
+const Login = props => (
   <div>
-      { console.log(isAuthenticated)}
+    {console.log(props)}
+    { props.state.userAuth.isAuthenticated ? props.history.push('/groups') : ''}
     <header>
       <ul>
         <li id="logo"><a>PostIt</a></li>
@@ -18,15 +19,15 @@ const Login = ({ isAuthenticated, signin, history }) => (
         <input type="text" id="username" placeholder="Username" />
         <input type="password" id="password" placeholder="Password" />
         <button onClick={(e) => {
-            e.preventDefault();
-            const usernameValue = document.getElementById("username").value;
-            const passwordValue = document.getElementById("password").value;
-            signin({
-                username: usernameValue,
-                password: passwordValue
-            });
-            }
-        }
+                    e.preventDefault();
+                    const usernameValue = document.getElementById('username').value;
+                    const passwordValue = document.getElementById('password').value;
+                    props.signin({
+                        username: usernameValue,
+                        password: passwordValue
+                    });
+                }
+                }
         >LOGIN
         </button>
         <p>Forgot password?</p>
