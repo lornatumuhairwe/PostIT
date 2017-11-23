@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Signup from '../../components/authentication/signup';
 import { signUpAsync } from '../../actions/authentication';
 
@@ -70,15 +71,17 @@ class SignUpContainer extends React.Component {
     };
 
     this.props.signUp(credentials);
-      console.log(this.props.state)
-  }
-
-  redirect() {
-    this.props.history.push('/groups');
   }
 
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/groups' } };
+
+    if (this.props.state.userAuth.isAuthenticated) {
+      return (
+        <Redirect to={from} />
+      );
+    }
     return (
       <Signup
         handleUsernameChange={this.handleUsernameChange}
