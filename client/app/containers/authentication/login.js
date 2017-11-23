@@ -6,8 +6,8 @@ import { signin } from '../../actions/authentication';
 class LoginContainer extends React.Component {
   render() {
     return (
-  <Login signin={this.props.signin} state={this.props.state} history={this.props.history} />
-  );
+      <Login signin={this.props.signin} state={this.props.state} history={this.props.history} />
+    );
   }
 }
 

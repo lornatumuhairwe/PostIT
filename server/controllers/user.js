@@ -5,34 +5,39 @@ const encoder = require('./authentication');
 
 module.exports = {
   create(req, res) {
-    return User
-      .create({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-      })
-      .then((user) => {
-        res.status(201).send({
-          user,
-          message: 'Signup success'
+    if (req.body.password === req.body.confirmPassword) {
+      return User
+        .create({
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+        })
+        .then(() => {
+          res.status(201).send({
+            message: 'Signup success',
+            cookie: encoder.encode(`${req.body.username}:${req.body.password}`)
+          });
+        })
+        .catch((error) => {
+          if (error.errors[0].message === 'username must be unique') {
+            res.status(400).send({
+              message: 'Username is already taken. Please choose another one.'
+            });
+          } else if (error.errors[0].message === 'Validation isEmail on email failed') {
+            res.status(400).send({
+              message: 'Please enter a valid email.'
+            });
+          } else {
+            res.status(400).send({
+              error: error.errors[0].message,
+              message: 'This error occurred during signup.'
+            });
+          }
         });
-      })
-      .catch((error) => {
-        if (error.errors[0].message === 'username must be unique') {
-          res.status(400).send({
-            message: 'Username is already taken. Please choose another one.'
-          });
-        } else if (error.errors[0].message === 'Validation isEmail on email failed') {
-          res.status(400).send({
-            message: 'Please enter a valid email.'
-          });
-        } else {
-          res.status(400).send({
-            error: error.errors[0].message,
-            message: 'This error occurred during signup.'
-          });
-        }
-      });
+    }
+    res.status(400).send({
+      message: "Confirmation password doesn't match"
+    });
   },
   login(req, res) {
     const username = req.body.username,

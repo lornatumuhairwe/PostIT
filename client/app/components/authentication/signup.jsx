@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 require('../../../src/stylesheets/style.scss');
 
-
-const Signup = ({ signup }) => (
+const Signup = props => (
   <div>
     <header>
       <ul>
@@ -15,32 +15,45 @@ const Signup = ({ signup }) => (
     </header>
     <section>
       <div className="auth-box">
-        <input type="text" id="username" placeholder="Username" />
-        <input type="text" id="email" placeholder="Email" />
-        <input type="password" id="password" placeholder="Password" />
-        <input type="password" id="confirm_password" placeholder="Confirm Password" />
-        <button onClick={(e) => {
-            e.preventDefault();
-            const usernameValue = document.getElementById('username').value;
-            const emailValue = document.getElementById('email').value;
-            const passwordValue = document.getElementById('password').value;
-            const confirmPasswordValue = document.getElementById('confirm_password').value;
-            if (passwordValue === confirmPasswordValue) {
-                signup({
-                    username: usernameValue,
-                    email: emailValue,
-                    password: passwordValue
-                });
-            } else {
-                alert('confirm password doesn"t match password');
-            }
-            }}
-        >SIGN UP
+        <input
+          type="text"
+          id="username"
+          placeholder="Username"
+          onChange={props.handleUsernameChange}
+        />
+        <input
+          type="text"
+          id="email"
+          placeholder="Email"
+          onChange={props.handleEmailChange}
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          onChange={props.handlePasswordChange}
+        />
+        <input
+          type="password"
+          id="confirm_password"
+          placeholder="Confirm Password"
+          onChange={props.handleConfirmPasswordChange}
+        />
+        <button onClick={props.handleSignUpAction}>
+            SIGN UP
         </button>
       </div>
       <button>LOGIN</button>
     </section>
   </div>
 );
+
+Signup.propTypes = {
+  handleUsernameChange: PropTypes.func.isRequired,
+  handleEmailChange: PropTypes.func.isRequired,
+  handlePasswordChange: PropTypes.func.isRequired,
+  handleConfirmPasswordChange: PropTypes.func.isRequired,
+  handleSignUpAction: PropTypes.func.isRequired,
+};
 
 export default Signup;

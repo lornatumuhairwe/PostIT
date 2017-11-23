@@ -29,5 +29,15 @@
         "ClassDeclaration": true
       }
     }]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    }
   }
 }

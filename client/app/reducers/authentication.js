@@ -1,5 +1,5 @@
 import initialState from '../initialState';
-import { SIGNIN, SIGNUP } from '../actionTypes';
+import { SIGNIN, SIGNUP, SIGNUP_REJECTED, SIGNUP_FULFILLED } from '../actions/actionTypes';
 
 export function authentication(state = initialState.userAuth, action) {
   switch (action.type) {
@@ -12,6 +12,11 @@ export function authentication(state = initialState.userAuth, action) {
       return {
         cookie: '',
         isAuthenticated: false
+      };
+    case SIGNUP_FULFILLED:
+      return {
+        cookie: action.cookie,
+        isAuthenticated: true
       };
     case 'SIGNIN_FULFILLED':
       return {
@@ -41,5 +46,3 @@ export function loading(state = initialState.loading, action) {
       return state;
   }
 }
-
-
