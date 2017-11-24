@@ -6,7 +6,6 @@ require('../../../src/stylesheets/style.scss');
 const Login = props => (
   <div>
     {console.log(props)}
-    { props.state.userAuth.isAuthenticated ? props.history.push('/groups') : ''}
     <header>
       <ul>
         <li id="logo"><a>PostIt</a></li>
@@ -16,19 +15,22 @@ const Login = props => (
     </header>
     <section>
       <div className="auth-box">
-        <input type="text" id="username" placeholder="Username" />
-        <input type="password" id="password" placeholder="Password" />
-        <button onClick={(e) => {
-                    e.preventDefault();
-                    const usernameValue = document.getElementById('username').value;
-                    const passwordValue = document.getElementById('password').value;
-                    props.signin({
-                        username: usernameValue,
-                        password: passwordValue
-                    });
-                }
-                }
-        >LOGIN
+        <input
+          type="text"
+          id="username"
+          placeholder="Username"
+          onChange={props.handleUsernameChange}
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          onChange={props.handlePasswordChange}
+        />
+        <button
+          onClick={props.handleSignIn}
+        >
+            LOGIN
         </button>
         <p>Forgot password?</p>
       </div>
