@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Modal, Row, Input } from 'react-materialize';
 
 require('../../../src/stylesheets/style.scss');
 
@@ -6,8 +7,8 @@ class Groups extends React.Component {
   renderGroups() {
     if (this.props.groups.groups) {
       return this.props.groups.groups.user_groups.map(group => (
-        <div key={group.id} className="card">
-            <li>#{group.name}</li>
+        <div key={group.id}>
+          <li>#{group.name}</li>
         </div>
       ));
     }
@@ -25,17 +26,25 @@ class Groups extends React.Component {
         </header>
         <section id="message_board">
           <div className="side-bar">
-            <h2>Groups&ensp;&ensp;&emsp;&emsp;&emsp;&nbsp;+</h2>
+            <h2>Groups</h2>
+            <Modal
+              header='Add Group'
+              trigger={<Button floating large icon='add'>MODAL</Button>}
+              actions={<Button onClick={this.props.handleAddGroup}>SUBMIT</Button>}
+            >
+              <Row>
+                <Input s={6} label="Group Name" onChange={this.props.handleGroupNameChange} />
+              </Row>
+            </Modal>
             <ul>
-                {this.renderGroups()}
+              {this.renderGroups()}
             </ul>
           </div>
           <div className="main-content">
             <div className="group-title">
               <p># Fun in Kampala<span>12members</span><span>+</span></p>
             </div>
-              <p>Groups</p>
-              <div className="group-messages">
+            <div className="group-messages">
               <div id="empty" />
               <div id="message">
                 <p><span style={{ fontWeight: 700 }}>
