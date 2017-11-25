@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Login from '../../components/authentication/login';
 import { signInAsync } from '../../actions/authentication';
 
@@ -54,6 +55,12 @@ class LoginContainer extends React.Component {
     );
   }
 }
+
+LoginContainer.propTypes = {
+  signin: PropTypes.func.isRequired,
+  state: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
   // console.log(state.authentication);

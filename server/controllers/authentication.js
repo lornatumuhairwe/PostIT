@@ -32,4 +32,3 @@ exports.encode = function b64EncodeUnicode(str) {
 };
 
 exports.isAuthenticated = passport.authenticate('basic', { session: false });
-
