@@ -5,7 +5,6 @@ require('../../../src/stylesheets/style.scss');
 
 const Login = props => (
   <div>
-    {console.log(props)}
     <header>
       <ul>
         <li id="logo"><a>PostIt</a></li>

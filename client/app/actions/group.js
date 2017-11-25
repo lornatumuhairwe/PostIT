@@ -19,20 +19,19 @@ function getUserGroupsFail(err) {
 export function getUserGroupsAsync(authKey) {
   return (dispatch) => {
     dispatch(startApiCall(GET_USER_GROUPS));
-    return axios.post(
-      'api/groups',
-      {
-        headers:
-            {
-              Authorization:
-                `Basic ${authKey}`
-            },
-      }
-    ).then((groups) => {
-      console.log(groups);
-      dispatch(getUserGroupsSuccess(groups));
+    return axios({
+      method: 'get',
+      url: 'api/groups',
+      headers:
+                {
+                  Authorization:
+                    `Basic ${authKey}`
+                },
+    }).then((groups) => {
+      console.log(JSON.stringify(groups));
+      dispatch(getUserGroupsSuccess(groups.data));
     }).catch((err) => {
-      console.log(err);
+      console.log(JSON.stringify(err.data));
       dispatch(getUserGroupsFail(err));
     });
   };
