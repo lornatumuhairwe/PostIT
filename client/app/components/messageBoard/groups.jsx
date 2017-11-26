@@ -66,8 +66,9 @@ class Groups extends React.Component {
                   aliquam pharetra eget.
                 </p>
               </div>
+              <Input label="Write message" onChange={this.props.handleGetMessage} />
               <div id="message_input">
-                <button>SEND</button>
+                <button onClick={this.props.handlePostMessage}>SEND</button>
               </div>
             </div>
           </div>

@@ -67,7 +67,7 @@ export function addNewGroupAsync(details) {
                     `Basic ${details.authKey}`
             },
     }).then((res) => {
-      console.log('res>>>>>>>>>>>>>', res.data);
+      console.log('>>>>>>>>>>>', res.data);
     }).catch((err) => {
       console.log('err>>>>>>>>>>>>>', err);
     });

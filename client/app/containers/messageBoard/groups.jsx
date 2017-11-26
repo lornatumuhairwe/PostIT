@@ -3,18 +3,21 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Groups from '../../components/messageBoard/groups';
 import { addNewGroupAsync, getUserGroupsAsync } from '../../actions/group';
-import { getActiveGroupAsync } from '../../actions/activeGroup';
+import { getActiveGroupAsync, postMessageAsync } from '../../actions/activeGroup';
 
 class GroupsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       groupName: '',
-      activeGroup: ''
+      activeGroup: '',
+      message: ''
     };
     this.handleAddGroup = this.handleAddGroup.bind(this);
     this.handleGroupNameChange = this.handleGroupNameChange.bind(this);
     this.handleGetActiveGroup = this.handleGetActiveGroup.bind(this);
+    this.handlePostMessage = this.handlePostMessage.bind(this);
+    this.handleGetMessage = this.handleGetMessage.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +44,17 @@ class GroupsContainer extends Component {
   handleGetActiveGroup(activeGroup, e) {
     e.preventDefault();
     console.log(activeGroup);
+    this.setState({ activeGroup: activeGroup.id });
     this.props.getActiveGroupAsync(activeGroup.id, this.props.userAuth.cookie);
+  }
+
+  handleGetMessage(e) {
+    this.setState({ message: e.target.value });
+  }
+
+  handlePostMessage(e) {
+    e.preventDefault();
+    this.props.postMessageAsync(this.state.activeGroup, this.state.message, this.props.userAuth.cookie);
   }
 
   render() {
@@ -52,6 +65,8 @@ class GroupsContainer extends Component {
         handleGroupNameChange={this.handleGroupNameChange}
         handleAddGroup={this.handleAddGroup}
         handleGetActiveGroup={this.handleGetActiveGroup}
+        handlePostMessage={this.handlePostMessage}
+        handleGetMessage={this.handleGetMessage}
       />
     );
   }
@@ -66,6 +81,7 @@ function mapDispatchToProps(dispatch) {
     getUserGroups: getUserGroupsAsync,
     addNewGroupAsync,
     getActiveGroupAsync,
+    postMessageAsync,
   }, dispatch);
 }
 
