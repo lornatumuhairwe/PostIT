@@ -4,13 +4,19 @@ import { Button, Modal, Row, Input } from 'react-materialize';
 require('../../../src/stylesheets/style.scss');
 
 class Groups extends React.Component {
+  // getGroupId(group, e) {
+  //   console.log(group);
+  //
+  // }
+
   renderGroups() {
     if (this.props.groups.groups) {
-      return this.props.groups.groups.user_groups.map(group => (
-        <div key={group.id}>
-          <li>#{group.name}</li>
-        </div>
-      ));
+      return this.props.groups.groups.user_groups.map((group) => {
+        const boundClick = this.props.handleGetActiveGroup.bind(this, group);
+        return (<div key={group.id}>
+          <li onClick={boundClick}>#{group.name}</li>
+                </div>);
+      });
     }
   }
 

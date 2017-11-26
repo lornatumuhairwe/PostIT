@@ -4,7 +4,7 @@ export default {
   groups: [],
   activeGroup: {
     id: null,
-    groupsName: null,
+    groupName: null,
     messages: []
   }
 };
