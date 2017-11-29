@@ -76,13 +76,16 @@ module.exports = {
         user_id: req.user.dataValues.id,
         group_id: req.params.group_id
       }
-    }).then((member) => {
+    }).then(() => {
       // console.log('check if user is member of group', member);
-      if (member) {
+      // if (member) {
+      User.findOne({ where: { id: req.user.dataValues.id } }).then((user) => {
+        const username = user.username;
         return Message.create({
           GroupId: req.params.group_id,
           // UserId: req.body.user_id,
           UserId: req.user.dataValues.id,
+          username: user.username,
           body: req.body.message_body
         }).then((message_details) => {
           res.status(201).send({
@@ -92,18 +95,20 @@ module.exports = {
         }).catch((error) => {
           res.status(400).send(error);
         });
-      }
-      res.status(401).send({
-        message: 'You cannot post a message to agroup you dont belong to'
       });
-    }).catch((error) => {
+    }
+      // res.status(401).send({
+      //   message: 'You cannot post a message to agroup you dont belong to'
+      // });
+    // }
+    ).catch((error) => {
       res.status(400).send(error);
     });
   },
 
   getAllGroupMessages(req, res) {
     // first check if group with that id exists and user is a member and then get messages in group
-    console.log(req.user);
+    // console.log(req.user);
     GroupMembers.findOne({
       where: {
         user_id: req.user.dataValues.id,
@@ -113,8 +118,12 @@ module.exports = {
       // console.log('check if user is member of group', member);
       if (member) {
         return Message.findAll({ where: { GroupId: req.params.group_id } }).then((messages) => {
+          // console.log(messages);
+          // for (const index in messages) {
+          //   console.log(messages[index].UserId);
+          // }
           res.status(201).send({
-            message: 'These are the messages in this group',
+            message: 'These are the messags in this group',
             messages
           });
         }).catch((error) => {

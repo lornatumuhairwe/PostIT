@@ -35,6 +35,10 @@ module.exports = {
       },
       allowNull: false,
     },
+    username: {
+      allowNull: false,
+      type: Sequelize.STRING,
+    },
   }),
   down: (queryInterface, Sequelize) => queryInterface.dropTable('Messages'),
 };

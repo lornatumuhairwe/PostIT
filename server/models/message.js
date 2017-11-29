@@ -7,7 +7,14 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: true
       },
-    }
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      },
+    },
   });
   Message.associate = (model) => {
     Message.belongsTo(model.Group, { targetKey: 'id', onDelete: 'CASCADE' });
