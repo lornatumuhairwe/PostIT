@@ -18,7 +18,17 @@ class Groups extends React.Component {
   renderMessages() {
     if (this.props.messages) {
       console.log('component messages', this.props.messages);
-      return this.props.messages.messages.map(message => (<p key={message.id}>{message.body}</p>));
+      return this.props.messages.messages.map(message =>
+        // noinspection JSAnnotator
+        (<div>
+          <p><span style={{ fontWeight: 700 }}>
+            <b>{message.username} &nbsp;</b>
+             </span>
+            <span style={{ color: '#CCC' }}>{message.createdAt}</span>
+          </p>
+          <p key={message.id}>{message.body}</p>
+         </div>
+        ));
     }
   }
 
@@ -55,19 +65,7 @@ class Groups extends React.Component {
             <div className="group-messages">
               <div id="empty" />
               <div id="message">
-                <p><span style={{ fontWeight: 700 }}>
-                  <b>XR &nbsp;</b>
-                </span>
-                  <span style={{ color: '#CCC' }}>10:00AM</span>
-                </p>
                 {this.renderMessages()}
-                {/* <p> */}
-                {/* Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo. */}
-                {/* Luctus arcu, urna praesent at id quisque ac. Arcu es massa vestibulum malesuada, */}
-                {/* integer vivamus elit eu mauris eus, cum eros quis aliquam wisi. Nulla wisi laoreet */}
-                {/* suspendisse integer vivamus elit eu mauris hendrerit facilisi, mi mattis pariatur */}
-                {/* aliquam pharetra eget. */}
-                {/* </p> */}
               </div>
               <Input label="Write message" onChange={this.props.handleGetMessage} />
               <div id="message_input">
