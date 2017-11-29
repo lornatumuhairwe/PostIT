@@ -16,9 +16,9 @@ class Groups extends React.Component {
   }
 
   renderMessages() {
-    if (this.props.messages.length > 0) {
+    if (this.props.messages) {
       console.log('component messages', this.props.messages);
-      // return this.props.messages.messages.map(message => (<p>{message.body}</p>));
+      return this.props.messages.messages.map(message => (<p key={message.id}>{message.body}</p>));
     }
   }
 

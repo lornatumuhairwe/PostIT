@@ -3,8 +3,8 @@ export default {
   userAuth: { cookie: null, isAuthenticated: null },
   groups: [],
   activeGroup: {
-    id: null,
-    groupName: null,
+    // id: null,
+    // groupName: null,
     messages: []
   }
 };

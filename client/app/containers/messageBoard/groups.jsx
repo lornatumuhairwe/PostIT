@@ -63,7 +63,7 @@ class GroupsContainer extends Component {
   }
 
   render() {
-    // { console.log('state>>>>>>>>>>', this.props.activeGroup); }
+    { console.log('state>>>>>>>>>>: ', this.props.activeGroup); }
     return (
       <Groups
         groups={this.props.groups}
@@ -72,7 +72,7 @@ class GroupsContainer extends Component {
         handleGetActiveGroup={this.handleGetActiveGroup}
         handlePostMessage={this.handlePostMessage}
         handleGetMessage={this.handleGetMessage}
-        messages={this.state.messages}
+        messages={this.props.activeGroup}
       />
     );
   }
