@@ -58,8 +58,8 @@ class LoginContainer extends React.Component {
 
 LoginContainer.propTypes = {
   signin: PropTypes.func.isRequired,
-  state: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+  state: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  location: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 function mapStateToProps(state) {

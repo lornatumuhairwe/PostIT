@@ -4,11 +4,16 @@ section {
   height: 70vh;
   width: 100%;
 
-  .auth-box{
+  .row{
     width: 30%;
-    height: 70%;
-    border: 2px solid #FD9927;
+  }
+
+  .auth-box{
+    width: 40%;
+    // height: 70%;
+    // border: 2px solid #FD9927;
     @include flex;
+
 
   input{
     width: 80%;

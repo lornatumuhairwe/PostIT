@@ -1,39 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Row, Navbar, NavItem, Input, Button } from 'react-materialize';
 
 require('../../../src/stylesheets/style.scss');
 
 const Login = props => (
   <div>
-    <header>
-      <ul>
-        <li id="logo"><a>PostIt</a></li>
-        <li className="nav-item"><Link to="/signup">SIGN UP</Link></li>
-        <li className="nav-item"><Link to="/">Why PostIt?</Link></li>
-      </ul>
-    </header>
+    <Navbar id="logo" brand='PostIt' right>
+      <NavItem><Link to="/signup">SIGN UP</Link></NavItem>
+      <NavItem><Link to="/">HOME</Link></NavItem>
+    </Navbar>
     <section>
-      <div className="auth-box">
-        <input
-          type="text"
-          id="username"
+      <Row>
+        <Input
           placeholder="Username"
+          s={12}
+          label="Username"
           onChange={props.handleUsernameChange}
         />
-        <input
-          type="password"
-          id="password"
+        <Input
           placeholder="Password"
+          s={12}
+          type="password"
+          label="Password"
           onChange={props.handlePasswordChange}
         />
-        <button
-          onClick={props.handleSignIn}
-        >
-            LOGIN
-        </button>
-        <p>Forgot password?</p>
-      </div>
-      <button>SIGN UP</button>
+        <Button s={12} onClick={props.handleSignIn}>LOGIN</Button>
+      </Row>
     </section>
   </div>
 );
