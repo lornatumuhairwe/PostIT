@@ -4,11 +4,6 @@ import { Button, Modal, Row, Input } from 'react-materialize';
 require('../../../src/stylesheets/style.scss');
 
 class Groups extends React.Component {
-  // getGroupId(group, e) {
-  //   console.log(group);
-  //
-  // }
-
   renderGroups() {
     if (this.props.groups.groups) {
       return this.props.groups.groups.user_groups.map((group) => {
@@ -20,10 +15,17 @@ class Groups extends React.Component {
     }
   }
 
+  renderMessages() {
+    if (this.props.messages.length > 0) {
+      console.log('component messages', this.props.messages);
+      // return this.props.messages.messages.map(message => (<p>{message.body}</p>));
+    }
+  }
+
   render() {
     return (
       <div className="body">
-        {console.log('>>>>>>>>>>>.', this.props.groups.groups)}
+        {/* {console.log('>>>>>>>>>>>.', this.props.groups.groups)} */}
         <header id="message_board_header">
           <ul>
             <li id="logo"><a>PostIt</a></li>
@@ -58,13 +60,14 @@ class Groups extends React.Component {
                 </span>
                   <span style={{ color: '#CCC' }}>10:00AM</span>
                 </p>
-                <p>
-                  Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo.
-                  Luctus arcu, urna praesent at id quisque ac. Arcu es massa vestibulum malesuada,
-                  integer vivamus elit eu mauris eus, cum eros quis aliquam wisi. Nulla wisi laoreet
-                  suspendisse integer vivamus elit eu mauris hendrerit facilisi, mi mattis pariatur
-                  aliquam pharetra eget.
-                </p>
+                {this.renderMessages()}
+                {/* <p> */}
+                {/* Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo. */}
+                {/* Luctus arcu, urna praesent at id quisque ac. Arcu es massa vestibulum malesuada, */}
+                {/* integer vivamus elit eu mauris eus, cum eros quis aliquam wisi. Nulla wisi laoreet */}
+                {/* suspendisse integer vivamus elit eu mauris hendrerit facilisi, mi mattis pariatur */}
+                {/* aliquam pharetra eget. */}
+                {/* </p> */}
               </div>
               <Input label="Write message" onChange={this.props.handleGetMessage} />
               <div id="message_input">

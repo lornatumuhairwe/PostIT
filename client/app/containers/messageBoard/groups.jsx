@@ -11,7 +11,8 @@ class GroupsContainer extends Component {
     this.state = {
       groupName: '',
       activeGroup: '',
-      message: ''
+      message: '',
+      messages: []
     };
     this.handleAddGroup = this.handleAddGroup.bind(this);
     this.handleGroupNameChange = this.handleGroupNameChange.bind(this);
@@ -46,6 +47,7 @@ class GroupsContainer extends Component {
     console.log(activeGroup);
     this.setState({ activeGroup: activeGroup.id });
     this.props.getActiveGroupAsync(activeGroup.id, this.props.userAuth.cookie);
+    // this.setState({ messages: this.props.activeGroup.messages })
   }
 
   handleGetMessage(e) {
@@ -54,11 +56,14 @@ class GroupsContainer extends Component {
 
   handlePostMessage(e) {
     e.preventDefault();
-    this.props.postMessageAsync(this.state.activeGroup, this.state.message, this.props.userAuth.cookie);
+    this.props.postMessageAsync(
+      this.state.activeGroup,
+      this.state.message, this.props.userAuth.cookie
+    );
   }
 
   render() {
-    { console.log('props>>>>>>>>>>', this.props); }
+    // { console.log('state>>>>>>>>>>', this.props.activeGroup); }
     return (
       <Groups
         groups={this.props.groups}
@@ -67,6 +72,7 @@ class GroupsContainer extends Component {
         handleGetActiveGroup={this.handleGetActiveGroup}
         handlePostMessage={this.handlePostMessage}
         handleGetMessage={this.handleGetMessage}
+        messages={this.state.messages}
       />
     );
   }

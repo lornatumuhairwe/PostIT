@@ -31,7 +31,7 @@ export function getUserGroupsAsync(authKey) {
                     `Basic ${authKey}`
                 },
     }).then((groups) => {
-      console.log(JSON.stringify(groups));
+      // console.log(JSON.stringify(groups));
       dispatch(getUserGroupsSuccess(groups.data));
     }).catch((err) => {
       console.log(JSON.stringify(err.data));
