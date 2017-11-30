@@ -1,16 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Navbar, NavItem, Input, Button, Row } from 'react-materialize';
+import { Navbar, NavItem, Input, Row } from 'react-materialize';
+import {
+  Button,
+  Container,
+  Header,
+  Icon,
+  Menu,
+  Segment,
+  Visibility,
+} from 'semantic-ui-react';
 
 require('../../../src/stylesheets/style.scss');
 
 const Signup = props => (
   <div>
-    <Navbar id="logo" brand='PostIt' right>
-      <NavItem><Link to="/login">LOGIN</Link></NavItem>
-      <NavItem><Link to="/">HOME</Link></NavItem>
-    </Navbar>
+    <Segment
+      inverted
+      textAlign='center'
+      vertical
+    >
+      <Container>
+        <Menu inverted pointing secondary size='large'>
+          <Menu.Item as={Link} to='/'>PostIt</Menu.Item>
+          <Menu.Item position='right'>
+            <Button as={Link} to='/login' inverted style={{ marginLeft: '0.5em' }}>Login</Button>
+            <Button as={Link} to='/signup' inverted style={{ marginLeft: '0.5em' }} active>Sign up</Button>
+          </Menu.Item>
+        </Menu>
+      </Container>
+    </Segment>
     <section>
       <Row>
         <Input
@@ -46,37 +66,6 @@ const Signup = props => (
         >SIGN UP
         </Button>
       </Row>
-      {/* <div className="auth-box"> */}
-
-      {/* <input */}
-      {/* type="text" */}
-      {/* id="username" */}
-      {/* placeholder="Username" */}
-      {/* onChange={props.handleUsernameChange} */}
-      {/* /> */}
-      {/* <input */}
-      {/* type="text" */}
-      {/* id="email" */}
-      {/* placeholder="Email" */}
-      {/* onChange={props.handleEmailChange} */}
-      {/* /> */}
-      {/* <input */}
-      {/* type="password" */}
-      {/* id="password" */}
-      {/* placeholder="Password" */}
-      {/* onChange={props.handlePasswordChange} */}
-      {/* /> */}
-      {/* <input */}
-      {/* type="password" */}
-      {/* id="confirm_password" */}
-      {/* placeholder="Confirm Password" */}
-      {/* onChange={props.handleConfirmPasswordChange} */}
-      {/* /> */}
-      {/* <button onClick={props.handleSignUpAction}> */}
-      {/* SIGN UP */}
-      {/* </button> */}
-      {/* </div> */}
-      {/*<button>LOGIN</button>*/}
     </section>
   </div>
 );

@@ -1,15 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Navbar, NavItem, Input, Button } from 'react-materialize';
+import { Row, Navbar, NavItem, Input } from 'react-materialize';
+import {
+  Button,
+  Container,
+  Header,
+  Icon,
+  Menu,
+  Segment,
+  Visibility,
+} from 'semantic-ui-react';
 
 require('../../../src/stylesheets/style.scss');
 
 const Login = props => (
   <div>
-    <Navbar id="logo" brand='PostIt' right>
-      <NavItem><Link to="/signup">SIGN UP</Link></NavItem>
-      <NavItem><Link to="/">HOME</Link></NavItem>
-    </Navbar>
+    <Segment
+      inverted
+      textAlign='center'
+      vertical
+    >
+      <Container>
+        <Menu inverted pointing secondary size='large'>
+          <Menu.Item as={Link} to='/'>PostIt</Menu.Item>
+          <Menu.Item position='right'>
+            <Button as={Link} to='/' inverted active>Login</Button>
+            <Button as={Link} to='/signup' inverted style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+          </Menu.Item>
+        </Menu>
+      </Container>
+    </Segment>
     <section>
       <Row>
         <Input
