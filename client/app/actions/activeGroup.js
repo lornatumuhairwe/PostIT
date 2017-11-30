@@ -46,6 +46,7 @@ export function postMessageAsync(groupId, message_body, authKey) {
                 },
     }).then((messages) => {
       console.log(messages);
+      dispatch(getActiveGroupAsync(groupId, authKey));
     }).catch((error) => {
       console.log(error);
     });

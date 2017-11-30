@@ -20,7 +20,7 @@ class Groups extends React.Component {
       console.log('component messages', this.props.messages);
       return this.props.messages.messages.map(message =>
         // noinspection JSAnnotator
-        (<div>
+        (<div key={message.id}>
           <p><span style={{ fontWeight: 700 }}>
             <b>{message.username} &nbsp;</b>
              </span>
