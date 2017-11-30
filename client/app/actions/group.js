@@ -1,6 +1,10 @@
 import axios from 'axios';
 import {
-  ADD_NEW_GROUP, ADD_NEW_GROUP_FULFILLED, ADD_NEW_GROUP_REJECTED, GET_USER_GROUPS, GET_USER_GROUPS_FULFILLED,
+  ADD_NEW_GROUP,
+  ADD_NEW_GROUP_FULFILLED,
+  ADD_NEW_GROUP_REJECTED,
+  GET_USER_GROUPS,
+  GET_USER_GROUPS_FULFILLED,
   GET_USER_GROUPS_REJECTED
 } from './actionTypes';
 import { startApiCall } from './common';
@@ -40,9 +44,10 @@ export function getUserGroupsAsync(authKey) {
   };
 }
 
-function addNewGroupSuccess() {
+function addNewGroupSuccess(newGroup) {
   return {
-    type: ADD_NEW_GROUP_FULFILLED
+    type: ADD_NEW_GROUP_FULFILLED,
+    newGroup
   };
 }
 
@@ -68,6 +73,8 @@ export function addNewGroupAsync(details) {
             },
     }).then((res) => {
       console.log('>>>>>>>>>>>', res.data);
+      dispatch(addNewGroupSuccess(res.data));
+      dispatch(getUserGroupsAsync(details.authKey));
     }).catch((err) => {
       console.log('err>>>>>>>>>>>>>', err);
     });

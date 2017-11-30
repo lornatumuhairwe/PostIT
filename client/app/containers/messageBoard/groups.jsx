@@ -25,10 +25,6 @@ class GroupsContainer extends Component {
     this.props.getUserGroups(this.props.userAuth.cookie);
   }
 
-  // componentDidUpdate() {
-  //   this.props.getUserGroups(this.props.userAuth.cookie);
-  // }
-
   handleGroupNameChange(e) {
     this.setState({ groupName: e.target.value });
   }
@@ -63,7 +59,7 @@ class GroupsContainer extends Component {
   }
 
   render() {
-    { console.log('state>>>>>>>>>>: ', this.props.activeGroup); }
+    { console.log('groups>>>>>>>>>>: ', this.props.groups); }
     return (
       <Groups
         groups={this.props.groups}

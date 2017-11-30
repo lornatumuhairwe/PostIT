@@ -6,7 +6,7 @@ require('../../../src/stylesheets/style.scss');
 class Groups extends React.Component {
   renderGroups() {
     if (this.props.groups.groups) {
-      return this.props.groups.groups.user_groups.map((group) => {
+      return this.props.groups.groups.map((group) => {
         const boundClick = this.props.handleGetActiveGroup.bind(this, group);
         return (<div key={group.id}>
           <li onClick={boundClick}>#{group.name}</li>
@@ -46,6 +46,7 @@ class Groups extends React.Component {
           <div className="side-bar">
             <h2>Groups</h2>
             <Modal
+                id="foo"
               header='Add Group'
               trigger={<Button floating large icon='add'>MODAL</Button>}
               actions={<Button onClick={this.props.handleAddGroup}>SUBMIT</Button>}
