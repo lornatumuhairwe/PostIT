@@ -3,7 +3,7 @@ const passport = require('passport');
 const btoa = require('btoa');
 const BasicStrategy = require('passport-http').BasicStrategy;
 
-passport.use(new BasicStrategy(((username, password, done) => {
+passport.use(new BasicStrategy((username, password, done) => {
   User.findOne({
     where: {
       username
@@ -19,7 +19,7 @@ passport.use(new BasicStrategy(((username, password, done) => {
     }
     return done(null, user);
   });
-})));
+}));
 
 exports.encode = function b64EncodeUnicode(str) {
   // first we use encodeURIComponent to get percent-encoded UTF-8,
