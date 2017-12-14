@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+ul, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif; }
+
+header {
+  color: #FFF; }
+  header ul {
+    list-style-type: none; }
+    header ul li {
+      display: inline; }
+      header ul li a {
+        display: block; }
+    header ul li:nth-last-child(2) {
+      margin-right: 50px;
+      margin-left: 50px; }
+    header ul #logo {
+      float: left;
+      font-size: 3em;
+      font-weight: bolder;
+      margin: 1%; }
+    header ul .nav-item {
+      float: right;
+      font-size: 1.3em;
+      padding: 1%;
+      padding-top: 2%;
+      margin: 5px;
+      border-bottom: 3px solid #FFF; }
+
+.main {
+  width: 100%;
+  height: 83vh;
+  background-image: url("../images/broadcast.jpg");
+  background-size: 50% 80%;
+  background-repeat: no-repeat; }
+  .main div {
+    position: relative;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 100%; }
+    .main div p {
+      font-size: 3em;
+      margin-top: 100px;
+      color: #CCCCCC; }
+      .main div p span {
+        font-size: 4em; }
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  width: 100%; }
+  section .auth-box {
+    width: 30%;
+    height: 70%;
+    border: 2px solid #FD9927;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    section .auth-box input {
+      width: 80%;
+      height: 15%;
+      margin: 10px;
+      font-size: 21px;
+      color: #CCCCCC;
+      border-top: 1px solid #FFF;
+      border-right: 1px solid #FFF;
+      border-bottom: 1px solid #CCCCCC;
+      border-left: 1px solid #FFF; }
+    section .auth-box button {
+      width: 80%;
+      height: 12%;
+      margin: 20px; }
+  section button {
+    width: 30%;
+    height: 10%;
+    margin-top: 20px;
+    background-color: #1B90B2;
+    border: 2px solid #1B90B2; }
+  section p {
+    font-size: 0.9em; }
+
+#message_board_header {
+  background-color: #FFF;
+  color: #1B90B2;
+  border-bottom: 2px solid #1B90B2; }
+
+.body {
+  position: relative;
+  overflow: hidden; }
+
+#message_board {
+  flex-direction: row;
+  height: 88vh; }
+  #message_board .nav-item {
+    border-bottom: 3px solid #1B90B2; }
+  #message_board .side-bar {
+    width: 20%;
+    height: 88vh;
+    background-color: #1B90B2;
+    color: #FFF; }
+    #message_board .side-bar h2, #message_board .side-bar ul {
+      margin-left: 50px; }
+    #message_board .side-bar ul {
+      list-style-type: none;
+      font-size: 1.3em; }
+    #message_board .side-bar li {
+      margin-top: 30px; }
+  #message_board .main-content {
+    width: 80%;
+    height: 88vh; }
+    #message_board .main-content .group-title {
+      height: 10%;
+      background-color: #CCC;
+      border-bottom: 2px solid #1B90B2; }
+      #message_board .main-content .group-title p {
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        font-size: 1.5em;
+        padding-top: 1em; }
+        #message_board .main-content .group-title p span {
+          margin-left: 30%;
+          font-size: 0.6em; }
+    #message_board .main-content .group-messages {
+      height: 90%;
+      overflow: hidden; }
+      #message_board .main-content .group-messages #empty {
+        border-bottom: 3px solid #CCC;
+        height: 60%; }
+      #message_board .main-content .group-messages #message {
+        font-size: 1.3em;
+        width: 80%;
+        padding-left: 100px; }
+      #message_board .main-content .group-messages #message_input {
+        position: absolute;
+        bottom: 2%;
+        width: 65%;
+        border: 3px solid #CCC;
+        height: 50px;
+        margin-left: 100px; }
+        #message_board .main-content .group-messages #message_input button {
+          width: 10%;
+          height: 50px;
+          float: right;
+          padding: 3px;
+          margin-top: 0; }
+
+header {
+  width: 100%;
+  height: 12vh;
+  background-color: #1B90B2; }
+
+footer {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  background-color: #ADD8E6; }
+  footer p {
+    margin: 0 auto; }
+
+/*# sourceMappingURL=style.css.map */

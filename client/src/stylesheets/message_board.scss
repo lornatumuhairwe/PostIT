@@ -1,0 +1,88 @@
+#message_board_header{
+  background-color: $whiteColor;
+  color: $mainColor;
+  border-bottom: 2px solid $mainColor;
+}
+
+.body{
+  position: relative;
+  overflow: hidden;
+}
+
+#message_board{
+  flex-direction: row;
+  height: 88vh;
+  .nav-item{
+    border-bottom: 3px solid $mainColor;
+  }
+
+  .side-bar {
+    width: 20%;
+    height: 88vh;
+    background-color: $mainColor;
+    color: $whiteColor;
+
+    h2, ul{
+      margin-left: 50px;
+    }
+
+    ul{
+      list-style-type: none;
+      font-size: 1.3em;
+    }
+    li{
+      margin-top: 30px;
+    }
+  }
+
+  .main-content{
+    width: 80%;
+    height: 88vh;
+
+    .group-title{
+      height: 10%;
+      background-color: $greyColor;
+      border-bottom: 2px solid $mainColor;
+      p{
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        font-size: 1.5em;
+        padding-top: 1em;
+        span{
+            margin-left: 30%;
+          font-size: 0.6em;
+        }
+      }
+    }
+    .group-messages{
+      height: 90%;
+      overflow: hidden;
+      #empty{
+        border-bottom: 3px solid $greyColor;
+        height: 60%;
+      }
+      #message{
+        font-size: 1.3em;
+        width: 80%;
+        padding-left: 100px;
+      }
+
+      #message_input{
+        position: absolute;
+        bottom: 2%;
+        width: 65%;
+        border: 3px solid $greyColor;
+        height: 50px;
+        margin-left: 100px;
+
+        button{
+          width: 10%;
+          height: 50px;
+          float: right;
+          padding: 3px;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

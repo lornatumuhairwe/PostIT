@@ -1,2 +1,5 @@
 .idea/
 .DS_Store
+stylesheets/.sass-cache/
+node_modules/
+.nyc_output/
