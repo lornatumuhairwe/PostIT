@@ -70,9 +70,7 @@ class SignUpContainer extends React.Component {
       confirmPassword: this.state.confirmPassword
     };
 
-    this.props.signUp(credentials).then(() => {
-      console.log("Returned a promise!")
-    });
+    this.props.signUp(credentials);
   }
 
 

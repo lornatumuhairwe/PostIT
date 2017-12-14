@@ -4,7 +4,6 @@ import SignUpContainer from '../containers/authentication/signup';
 import LoginContainer from '../containers/authentication/login';
 import GroupsContainer from '../containers/messageBoard/groups';
 import { Home } from './home';
-import Groups from "./messageBoard/groups";
 
 require('../../src/stylesheets/style.scss');
 

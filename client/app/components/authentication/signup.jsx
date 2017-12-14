@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Navbar, NavItem, Input, Row } from 'react-materialize';
 import {
   Button,
   Container,
   Header,
-  Icon,
   Menu,
   Segment,
-  Visibility,
-    Form,
+  Form,
+  Message,
+  Grid
 } from 'semantic-ui-react';
 
 require('../../../src/stylesheets/style.scss');
@@ -32,42 +31,66 @@ const Signup = props => (
         </Menu>
       </Container>
     </Segment>
-    <section>
-      <Row>
-        <Input
-          placeholder="Username"
-          s={12}
-          label="Username"
-          onChange={props.handleUsernameChange}
-        />
-        <Input
-          placeholder="Email"
-          s={12}
-          label="Email"
-          type="email"
-          onChange={props.handleEmailChange}
-        />
-        <Input
-          placeholder="Password"
-          s={12}
-          type="password"
-          label="Password"
-          onChange={props.handlePasswordChange}
-        />
-        <Input
-          placeholder="Confirm Password"
-          s={12}
-          type="password"
-          label="Confirm Password"
-          onChange={props.handleConfirmPasswordChange}
-        />
-        <Button
-          s={12}
-          onClick={props.handleSignUpAction}
-        >SIGN UP
-        </Button>
-      </Row>
-    </section>
+    <div className='login-form'>
+      <Grid
+        textAlign='center'
+        style={{ height: '100%' }}
+        verticalAlign='middle'
+      >
+        <Grid.Column style={{ maxWidth: 450, marginTop: 100 }}>
+          <Header as='h2' color='teal' textAlign='center'>
+            Signup for an account
+          </Header>
+          <Form size='large'>
+            <Segment stacked>
+              <Form.Input
+                fluid
+                icon='user'
+                iconPosition='left'
+                placeholder='Username'
+                onChange={props.handleUsernameChange}
+              />
+              <Form.Input
+                fluid
+                icon='lock'
+                iconPosition='left'
+                placeholder='Email'
+                type='email'
+                onChange={props.handleEmailChange}
+              />
+              <Form.Input
+                fluid
+                icon='lock'
+                iconPosition='left'
+                placeholder='Password'
+                type='password'
+                onChange={props.handlePasswordChange}
+              />
+              <Form.Input
+                fluid
+                icon='lock'
+                iconPosition='left'
+                placeholder='Confirm Password'
+                type='password'
+                onChange={props.handleConfirmPasswordChange}
+              />
+
+              <Button
+                color='teal'
+                fluid
+                size='large'
+                onClick={props.handleSignUpAction}
+              >
+                Signup
+              </Button>
+            </Segment>
+          </Form>
+          <Message>
+            Already have an account? <a href='/login'>Sign In</a>
+          </Message>
+        </Grid.Column>
+      </Grid>
+    </div>
   </div>
 );
 
