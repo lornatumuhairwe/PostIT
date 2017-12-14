@@ -27,10 +27,8 @@ export function signUpAsync(credentials) {
       password: credentials.password,
       confirmPassword: credentials.confirmPassword,
     }).then((payload) => {
-      // console.log(payload.data.cookie);
       dispatch(signUpSuccess(payload.data.cookie));
     }).catch((err) => {
-      // console.log('>>>>>>>>>>>>>>', JSON.stringify(err.response.data.message));
       dispatch(signUpFail(JSON.stringify(err.response.data.message)));
     });
   };

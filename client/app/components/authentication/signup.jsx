@@ -10,6 +10,7 @@ import {
   Menu,
   Segment,
   Visibility,
+    Form,
 } from 'semantic-ui-react';
 
 require('../../../src/stylesheets/style.scss');

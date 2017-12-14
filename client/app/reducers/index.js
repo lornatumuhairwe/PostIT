@@ -19,7 +19,7 @@ export default createStore(
   authenticationActions,
   applyMiddleware(
     thunk,
-    promiseMiddleware(),
+    // promiseMiddleware(),
     loggerMiddleware
   )
 );

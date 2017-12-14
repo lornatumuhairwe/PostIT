@@ -6,16 +6,6 @@ import {
 
 export function authentication(state = initialState.userAuth, action) {
   switch (action.type) {
-    // case SIGNUP:
-    //   return {
-    //     cookie: '',
-    //     isAuthenticated: false
-    //   };
-    // case SIGNIN:
-    //   return {
-    //     cookie: '',
-    //     isAuthenticated: false
-    //   };
     case SIGNUP_FULFILLED:
       return {
         cookie: action.cookie,
