@@ -2,6 +2,14 @@ const User = require('../models').User;
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
 const encoder = require('./authentication');
+const jwt = require('jsonwebtoken');
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+
+const opts = {};
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+opts.secretOrKey = 'secret';
+opts.issuer = 'accounts.examplesoft.com';
+opts.audience = 'yoursite.net';
 
 module.exports = {
   create(req, res) {
@@ -53,12 +61,17 @@ module.exports = {
           message: 'Invalid password',
         });
       } else {
+        const payload = { id: user.id };
+        const token = jwt.sign(payload, opts.secretOrKey, {
+          expiresIn: 10080 // in seconds
+        });
         req.session.user = user.dataValues;
         // console.log(req.session.user.id);
         // console.log(encoder.encode(`${username}:${password}`));
         res.status(200).send({
+          token,
           message: 'Login success!',
-          cookie: encoder.encode(`${username}:${password}`)
+          // cookie: encoder.encode(`${username}:${password}`)
         });
       }
     });
