@@ -2,6 +2,7 @@ const passport = require('passport');
 const { User } = require('../models');
 const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
+const jwt = require('jsonwebtoken');
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -14,4 +15,11 @@ const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
 
 passport.use(strategy);
 
-exports.isAuthenticated = passport.authenticate('jwt', { session: false });
+module.exports.tokenGenerator = (userId) => {
+  const payload = { id: userId };
+  return jwt.sign(payload, opts.secretOrKey, {
+    expiresIn: 10080 // in seconds
+  });
+};
+
+module.exports.isAuthenticated = passport.authenticate('jwt', { session: false });

@@ -1,6 +1,6 @@
 const { User } = require('../models');
-const jwt = require('jsonwebtoken');
 const { ExtractJwt } = require('passport-jwt');
+const authController = require('../controllers/authentication');
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -18,10 +18,7 @@ module.exports = {
           password: req.body.password,
         })
         .then((user) => {
-          const payload = { id: user.id };
-          const token = jwt.sign(payload, opts.secretOrKey, {
-            expiresIn: 10080 // in seconds
-          });
+          const token = authController.tokenGenerator(user.id);
           res.status(201).send({
             token,
             message: 'Signup success',
@@ -62,10 +59,7 @@ module.exports = {
           message: 'Invalid password',
         });
       } else {
-        const payload = { id: user.id };
-        const token = jwt.sign(payload, opts.secretOrKey, {
-          expiresIn: 10080 // in seconds
-        });
+        const token = authController.tokenGenerator(user.id);
         req.session.user = user.dataValues;
         res.status(200).send({
           token,
@@ -73,5 +67,5 @@ module.exports = {
         });
       }
     });
-  }
+  },
 };
