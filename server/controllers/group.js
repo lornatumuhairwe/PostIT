@@ -1,10 +1,8 @@
-const Group = require('../models').Group;
-const GroupMembers = require('../models').GroupMembers;
-const Message = require('../models').Message;
-const User = require('../models').User;
-const passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy;
-const asyncLoop = require('node-async-loop');
+const {
+  Group,
+  GroupMembers,
+  Message, User
+} = require('../models');
 
 module.exports = {
   create(req, res) {
@@ -21,7 +19,6 @@ module.exports = {
         res.status(201).send(group);
       })
       .catch((error) => {
-        console.log(error);
         res.status(400).send(error);
       });
   },
@@ -34,7 +31,6 @@ module.exports = {
         group_id: req.params.group_id
       }
     }).then((member) => {
-      // console.log('check if user is member of group', member);
       if (member) {
         GroupMembers.findOne({
           where: {
@@ -59,7 +55,6 @@ module.exports = {
               message: 'User already part of the group.'
             });
           }
-          // console.log('check if user to be added is member of group vvv', member);
         });
       } else {
         res.status(400).send({
@@ -77,15 +72,12 @@ module.exports = {
         group_id: req.params.group_id
       }
     }).then(() => {
-      // console.log('check if user is member of group', member);
-      // if (member) {
       User.findOne({ where: { id: req.user.dataValues.id } }).then((user) => {
         const username = user.username;
         return Message.create({
           GroupId: req.params.group_id,
-          // UserId: req.body.user_id,
           UserId: req.user.dataValues.id,
-          username: user.username,
+          username,
           body: req.body.message_body
         }).then((message_details) => {
           res.status(201).send({
@@ -108,20 +100,14 @@ module.exports = {
 
   getAllGroupMessages(req, res) {
     // first check if group with that id exists and user is a member and then get messages in group
-    // console.log(req.user);
     GroupMembers.findOne({
       where: {
         user_id: req.user.dataValues.id,
         group_id: req.params.group_id
       }
     }).then((member) => {
-      // console.log('check if user is member of group', member);
       if (member) {
         return Message.findAll({ where: { GroupId: req.params.group_id } }).then((messages) => {
-          // console.log(messages);
-          // for (const index in messages) {
-          //   console.log(messages[index].UserId);
-          // }
           res.status(201).send({
             message: 'These are the messags in this group',
             messages
@@ -154,7 +140,6 @@ module.exports = {
           });
           return;
         }
-        // fetchEntry(group.entries[index])
         Group.findOne({
           where: {
             id: groups[index].group_id
