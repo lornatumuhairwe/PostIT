@@ -10,7 +10,6 @@ describe('group tests', () => {
     let user_id, group_id;
     before((done) => {
       User.sync({ force: true }).then(() => {
-        console.log('Table recreated at the beginning!!!!!!!!!!!!!!!!!!!!!');
         User.create({
           username: 'test_user',
           email: 'test@mail.com',
@@ -18,10 +17,6 @@ describe('group tests', () => {
         }).then(
           ((user) => {
             user_id = user.id;
-            // Group
-            //   .create({
-            //     name: 'before defined group',
-            //   }).then((group) => { group_id = group.id; });
           }),
           done()
         );
