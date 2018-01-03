@@ -4,17 +4,20 @@ const { expect } = require('chai');
 const { User } = require('../../server/models');
 
 describe('Authentication actions', () => {
-  describe('user authentication', () => {
-    before((done) => {
-      User.sync({ force: true }).then(() => {
-        User.create({
-          username: 'tester',
-          email: 'test@mail.com',
-          password: '1234567890',
-        });
-        done();
+
+  before((done) => {
+    User.sync({ force: true }).then(() => {
+      User.create({
+        username: 'tester',
+        email: 'test@mail.com',
+        password: '1234567890',
       });
+      done();
     });
+  });
+
+  // signup tests
+  describe('user signup', () => {
     it('should register user with valid credentials', (done) => {
       request(app).post('/api/user/signup')
         .send({
@@ -23,6 +26,7 @@ describe('Authentication actions', () => {
           password: 'password',
           confirmPassword: 'password'
         }).end((err, res) => {
+          expect(res.status).to.equal(201);
           expect(res.body.message).to.equal('Signup success');
           done();
         });
@@ -36,6 +40,7 @@ describe('Authentication actions', () => {
           password: 'password',
           confirmPassword: 'passwordD'
         }).end((err, res) => {
+          expect(res.status).to.equal(400);
           expect(res.body.message).to.equal("Confirmation password doesn't match");
           done();
         });
@@ -49,6 +54,7 @@ describe('Authentication actions', () => {
           password: 'password',
           confirmPassword: 'passwordD'
         }).end((err, res) => {
+          expect(res.status).to.equal(400);
           expect(res.body.message).to.equal("Confirmation password doesn't match");
           done();
         });
@@ -62,7 +68,35 @@ describe('Authentication actions', () => {
           password: 'password',
           confirmPassword: 'password'
         }).end((err, res) => {
+          expect(res.status).to.equal(400);
           expect(res.body.message).to.equal('Please enter a valid email.');
+          done();
+        });
+    });
+  });
+
+  // signin tests
+  describe('user login', () => {
+    it('should allow user login with correct credentials', (done) => {
+      request(app).post('/api/user/signin')
+        .send({
+          username: 'tester',
+          password: '1234567890'
+        })
+        .end((err, res) => {
+          expect(res.body.message).to.equal('Login success!');
+          done();
+        });
+    });
+
+    it('should not allow user login with incorrect credentials', (done) => {
+      request(app).post('/api/user/signin')
+        .send({
+          username: 'tester',
+          password: '12345'
+        })
+        .end((err, res) => {
+          expect(res.body.message).to.equal('Invalid password');
           done();
         });
     });
