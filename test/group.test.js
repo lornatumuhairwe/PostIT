@@ -36,28 +36,28 @@ describe('group tests', () => {
         });
       done();
     });
-    it('authenticated user can post message to a group', (done) => {
-      Group
-        .create({
-          name: 'before defined group',
-        }).then((group) => {
-          group_id = group.id;
-        });
-      request(app)
-        .post(`/api/${group_id}/message`)
-        .set('Authorization', 'Basic dGVzdF91c2VyOjEyMzQ1Njc4OTA=')
-        .send({
-          GroupId: group_id,
-          UserId: user_id,
-          body: 'Hello there!'
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(201);
-          expect(res.body.message).to.equal('New message sent to group');
-        });
-      console.log('Group id: ', group_id);
-      console.log('User id: ', user_id);
-      done();
-    });
+    // it('authenticated user can post message to a group', (done) => {
+    //   Group
+    //     .create({
+    //       name: 'before defined group',
+    //     }).then((group) => {
+    //       group_id = group.id;
+    //     });
+    //   request(app)
+    //     .post(`/api/${group_id}/message`)
+    //     .set('Authorization', 'Basic dGVzdF91c2VyOjEyMzQ1Njc4OTA=')
+    //     .send({
+    //       GroupId: group_id,
+    //       UserId: user_id,
+    //       body: 'Hello there!'
+    //     })
+    //     .end((err, res) => {
+    //       expect(res.status).to.equal(201);
+    //       expect(res.body.message).to.equal('New message sent to group');
+    //     });
+    //   console.log('Group id: ', group_id);
+    //   console.log('User id: ', user_id);
+    //   done();
+    // });
   });
 });
