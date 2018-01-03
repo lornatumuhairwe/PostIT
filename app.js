@@ -33,11 +33,11 @@ app.use(passport.session());
 
 app.use('/api', users);
 
-app.use(webpackDevMiddleware(compiler, {
-  hot: true,
-  publicPath: config.output.publicPath,
-  stats: { colors: true }
-}));
+// app.use(webpackDevMiddleware(compiler, {
+//   hot: true,
+//   publicPath: config.output.publicPath,
+//   stats: { colors: true }
+// }));
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 // app.get('*', (req, res) => res.status(200).send({
