@@ -71,28 +71,28 @@ module.exports = {
         user_id: req.user.dataValues.id,
         group_id: req.params.group_id
       }
-    }).then(() => {
-      User.findOne({ where: { id: req.user.dataValues.id } }).then((user) => {
-        const username = user.username;
-        return Message.create({
-          GroupId: req.params.group_id,
-          UserId: req.user.dataValues.id,
-          username,
-          body: req.body.message_body
-        }).then((message_details) => {
-          res.status(201).send({
-            message: 'New message sent to group',
-            message_details
+    }).then(
+      () => {
+        User.findOne({ where: { id: req.user.dataValues.id } }).then((user) => {
+          const username = user.username;
+          return Message.create({
+            GroupId: req.params.group_id,
+            UserId: req.user.dataValues.id,
+            username,
+            body: req.body.message_body
+          }).then((message_details) => {
+            res.status(201).send({
+              message: 'New message sent to group',
+              message_details
+            });
+          }).catch((error) => {
+            res.status(400).send(error);
           });
-        }).catch((error) => {
-          res.status(400).send(error);
         });
-      });
-    }
-      // res.status(401).send({
+      },
+      // res.status(402).send({
       //   message: 'You cannot post a message to agroup you dont belong to'
-      // });
-    // }
+      // })
     ).catch((error) => {
       res.status(400).send(error);
     });
@@ -108,7 +108,7 @@ module.exports = {
     }).then((member) => {
       if (member) {
         return Message.findAll({ where: { GroupId: req.params.group_id } }).then((messages) => {
-          res.status(201).send({
+          res.status(200).send({
             message: 'These are the messags in this group',
             messages
           });
