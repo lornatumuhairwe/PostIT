@@ -1,2 +1,5 @@
+--require ./test/setup
 --recursive
 --timeout 30000
+--reporter spec
+--exit

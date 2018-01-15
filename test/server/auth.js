@@ -1,6 +1,3 @@
-const request = require('supertest');
-const app = require('../../app');
-const { expect } = require('chai');
 const { User } = require('../../server/models');
 
 describe('Authentication actions', () => {

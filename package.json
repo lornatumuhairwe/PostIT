@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon app.js",
     "cover": "istanbul cover _mocha",
-    "test": "export NODE_ENV=test; nyc ./node_modules/.bin/mocha --reporter=html --reporter=text --reporter spec  --exit",
+    "test": "export NODE_ENV=test; nyc ./node_modules/.bin/mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "scss": "node-sass --watch stylesheets -o css"
   },

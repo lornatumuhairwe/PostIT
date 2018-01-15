@@ -1,31 +1,27 @@
-
-
-const expect = require('chai').expect;
-
 describe('models/index', () => {
   it('returns the task model', () => {
-    const models = require('../server/models/index');
+    const models = require('../../server/models/index');
     expect(models.Group).to.be.ok;
   });
 
   it('returns the user model', () => {
-    const models = require('../server/models/index');
+    const models = require('../../server/models/index');
     expect(models.User).to.be.ok;
   });
 
   it('returns the messages model', () => {
-    const models = require('../server/models/index');
+    const models = require('../../server/models/index');
     expect(models.Message).to.be.ok;
   });
 });
 
 describe('models/task', () => {
-  before(() => require('../server/models/index').sequelize.sync());
+  before(() => require('../../server/models/index').sequelize.sync());
 
   beforeEach(function () {
-    this.User = require('../server/models/index').User;
-    this.Group = require('../server/models/index').Group;
-    this.Message = require('../server/models/index').Message;
+    this.User = require('../../server/models/index').User;
+    this.Group = require('../../server/models/index').Group;
+    this.Message = require('../../server/models/index').Message;
   });
 
   describe('create', () => {
@@ -48,16 +44,5 @@ describe('models/task', () => {
       });
     });
 
-    // it('creates a message', function () {
-    //   return this.Message.create({
-    //     body: 'body of my first message',
-    //     no_of_members: '1',
-    //     group_id: 11,
-    //     user_id: 21,
-    //   }).bind(this).then((message) => {
-    //     console.log(message);
-    //     expect(message.body).to.equal('body of my first message');
-    //   });
-    // });
   });
 });
