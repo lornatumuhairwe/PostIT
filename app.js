@@ -6,7 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
+// const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.dev.js');
 
@@ -54,6 +54,5 @@ app.use(webpackHotMiddleware(compiler, {
 const port = parseInt(process.env.PORT, 10) || 5000;
 app.set('port', port);
 
-const server = app.listen(port);
+module.exports = app.listen(port);
 
-module.exports = server;

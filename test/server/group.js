@@ -57,7 +57,7 @@ describe('Group tests', () => {
         });
     });
 
-    it('should not allow an authenticated user to create a group', (done) => {
+    it('should not allow an unauthenticated user to create a group', (done) => {
       request(app).post('/api/group')
         .send({ name: 'Test Group' })
         .end((err, res) => {
