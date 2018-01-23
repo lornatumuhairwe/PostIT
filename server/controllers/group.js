@@ -24,7 +24,7 @@ module.exports = {
   },
 
   addUserToGroup(req, res) {
-    // first check if group with that id exists and user with the is exists, then add user to group
+    // first check if group with that id exists and user with the id exists, then add user to group
     GroupMembers.findOne({
       where: {
         user_id: req.user.dataValues.id,

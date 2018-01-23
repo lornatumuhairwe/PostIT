@@ -32,7 +32,7 @@ export function getUserGroupsAsync(authKey) {
       headers:
                 {
                   Authorization:
-                    `Basic ${authKey}`
+                    `Bearer ${authKey}`
                 },
     }).then((groups) => {
       // console.log(JSON.stringify(groups));
@@ -69,7 +69,7 @@ export function addNewGroupAsync(details) {
       headers:
             {
               Authorization:
-                    `Basic ${details.authKey}`
+                    `Bearer ${details.authKey}`
             },
     }).then((res) => {
       console.log('>>>>>>>>>>>', res.data);

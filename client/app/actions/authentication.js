@@ -27,7 +27,7 @@ export function signUpAsync(credentials) {
       password: credentials.password,
       confirmPassword: credentials.confirmPassword,
     }).then((payload) => {
-      dispatch(signUpSuccess(payload.data.cookie));
+      dispatch(signUpSuccess(payload.data.token));
     }).catch((err) => {
       dispatch(signUpFail(JSON.stringify(err.response.data.message)));
     });
@@ -53,10 +53,8 @@ export function signInAsync(credentials) {
       username: credentials.username,
       password: credentials.password
     }).then((payload) => {
-      // console.log(payload);
-      dispatch(signInSuccess(payload.data.cookie));
+      dispatch(signInSuccess(payload.data.token));
     }).catch((err) => {
-      // console.log('>>>>>>>>>>>>>>', JSON.stringify(err.response.data.message));
       dispatch(signInFail(JSON.stringify(err.response.data.message)));
     });
   };

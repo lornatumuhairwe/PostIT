@@ -29,7 +29,7 @@ function sendMessageAsync(details) {
       headers:
             {
               Authorization:
-                    `Basic ${details.authKey}`
+                    `Bearer ${details.authKey}`
             },
     }).then((res) => {
       console.log(res);

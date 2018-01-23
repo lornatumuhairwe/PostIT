@@ -18,11 +18,9 @@ export function getActiveGroupAsync(groupId, authKey) {
       headers:
             {
               Authorization:
-                    `Basic ${authKey}`
+                    `Bearer ${authKey}`
             },
     }).then((messages) => {
-      // console.log("**************", messages);
-      // console.log("*************", messages.data);
       dispatch(getActiveGroupSuccess(messages.data.messages));
     }).catch((error) => {
       console.log(error);
@@ -42,7 +40,7 @@ export function postMessageAsync(groupId, message_body, authKey) {
       headers:
                 {
                   Authorization:
-                        `Basic ${authKey}`
+                        `Bearer ${authKey}`
                 },
     }).then((messages) => {
       console.log(messages);

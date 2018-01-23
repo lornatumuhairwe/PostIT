@@ -59,7 +59,7 @@ class GroupsContainer extends Component {
   }
 
   render() {
-    { console.log('groups>>>>>>>>>>: ', this.props.groups); }
+    { console.log('groups>>>>>>>>>>: ', this.props); }
     return (
       <Groups
         groups={this.props.groups}
