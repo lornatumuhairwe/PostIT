@@ -63,7 +63,7 @@ export function postMessageAsync(groupId, message_body, authKey) {
 //       headers:
 //                 {
 //                   Authorization:
-//                         `Basic ${authKey}`
+//                         `Bearer ${authKey}`
 //                 },
 //     }).then((response) => {
 //       console.log(response);

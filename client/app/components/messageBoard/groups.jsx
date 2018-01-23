@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Modal, Row, Input } from 'react-materialize';
+import { Link } from 'react-router-dom';
+import { Input, Row } from 'react-materialize';
+import { Segment, Menu, Container, Grid, Modal, Header, Button, Icon } from 'semantic-ui-react';
 
 require('../../../src/stylesheets/style.scss');
 
@@ -9,7 +11,7 @@ class Groups extends React.Component {
       return this.props.groups.groups.map((group) => {
         const boundClick = this.props.handleGetActiveGroup.bind(this, group);
         return (<div key={group.id}>
-          <li onClick={boundClick}>#{group.name}</li>
+          <li onClick={boundClick}># {group.name}</li>
                 </div>);
       });
     }
@@ -34,46 +36,62 @@ class Groups extends React.Component {
 
   render() {
     return (
-      <div className="body">
+      <div>
         {/* {console.log('>>>>>>>>>>>.', this.props.groups.groups)} */}
-        <header id="message_board_header">
-          <ul>
-            <li id="logo"><a>PostIt</a></li>
-            <li className="nav-item"><a>MUHAIRWE</a></li>
-          </ul>
-        </header>
+        <Segment
+          inverted
+          textAlign='center'
+          vertical
+        >
+          <Container>
+            <Menu inverted pointing secondary size='large'>
+              <Menu.Item as={Link} to='/'>PostIt</Menu.Item>
+              <Menu.Item position='right'>
+                <Button as={Link} to='/login' inverted style={{ marginLeft: '0.5em' }} active>Muhairwe</Button>
+                <Button as={Link} to='/signup' inverted style={{ marginLeft: '0.5em' }}>Logout</Button>
+              </Menu.Item>
+            </Menu>
+          </Container>
+        </Segment>
         <section id="message_board">
-          <div className="side-bar">
-            <h2>Groups</h2>
-            <Modal
-                id="foo"
-              header='Add Group'
-              trigger={<Button floating large icon='add'>MODAL</Button>}
-              actions={<Button onClick={this.props.handleAddGroup}>SUBMIT</Button>}
-            >
-              <Row>
-                <Input s={6} label="Group Name" onChange={this.props.handleGroupNameChange} />
-              </Row>
-            </Modal>
-            <ul>
-              {this.renderGroups()}
-            </ul>
-          </div>
-          <div className="main-content">
-            <div className="group-title">
-              <p># Fun in Kampala<span>12members</span><span>+</span></p>
-            </div>
-            <div className="group-messages">
-              <div id="empty" />
-              <div id="message">
-                {this.renderMessages()}
+          <Grid columns={2} divided>
+            <Grid.Column width={4}>
+              <h2>Groups</h2>
+              <Modal trigger={<Button>Create group</Button>} closeIcon>
+                <Modal.Header>New group</Modal.Header>
+                <Modal.Content>
+                  <Modal.Description>
+                    <Row>
+                      <Input s={6} label="Group Name" onChange={this.props.handleGroupNameChange} />
+                    </Row>
+                  </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color='green' onClick={this.props.handleAddGroup}>
+                    <Icon name='checkmark' /> Yes
+                  </Button>
+                </Modal.Actions>
+              </Modal>
+              <ul>
+                {this.renderGroups()}
+              </ul>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <div className="group-title">
+                <p># Fun in Kampala<span>12members</span><span>+</span></p>
               </div>
-              <Input label="Write message" onChange={this.props.handleGetMessage} />
-              <div id="message_input">
-                <button onClick={this.props.handlePostMessage}>SEND</button>
+              <div className="group-messages">
+                <div id="empty" />
+                <div id="message">
+                  {this.renderMessages()}
+                </div>
+                <Input label="Write message" onChange={this.props.handleGetMessage} />
+                <div id="message_input">
+                  <button onClick={this.props.handlePostMessage}>SEND</button>
+                </div>
               </div>
-            </div>
-          </div>
+            </Grid.Column>
+          </Grid>
         </section>
       </div>
     );
