@@ -7,7 +7,7 @@
     "start": "nodemon app.js",
     "cover": "istanbul cover _mocha",
     "test": "export NODE_ENV=test; nyc ./node_modules/.bin/mocha",
-    "test-client": "jest",
+    "test-client": "nyc jest -u",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "scss": "node-sass --watch stylesheets -o css"
   },
@@ -85,6 +85,8 @@
     "babel-polyfill": "^6.26.0",
     "coveralls": "^3.0.0",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "file-loader": "^1.1.5",

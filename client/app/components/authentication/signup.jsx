@@ -12,7 +12,7 @@ import {
   Grid
 } from 'semantic-ui-react';
 
-require('../../../src/stylesheets/style.scss');
+// require('../../../src/stylesheets/style.scss');
 
 const Signup = props => (
   <div>

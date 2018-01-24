@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders the login page correctly renders well 1`] = `
+<div>
+  <div
+    className="ui inverted vertical center aligned segment"
+  >
+    <div
+      className="ui container"
+    >
+      <div
+        className="ui large inverted pointing secondary menu"
+      >
+        <a
+          className="item"
+          href="/"
+          onClick={[Function]}
+        >
+          PostIt
+        </a>
+        <div
+          className="right item"
+          onClick={[Function]}
+        >
+          <a
+            className="ui active inverted button sign-in-b"
+            disabled={undefined}
+            href="/login"
+            onClick={[Function]}
+            role="button"
+            style={
+              Object {
+                "marginLeft": "0.5em",
+              }
+            }
+            tabIndex={undefined}
+          >
+            Login
+          </a>
+          <a
+            className="ui inverted button"
+            disabled={undefined}
+            href="/signup"
+            onClick={[Function]}
+            role="button"
+            style={
+              Object {
+                "marginLeft": "0.5em",
+              }
+            }
+            tabIndex={undefined}
+          >
+            Sign up
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="login-form"
+  >
+    <div
+      className="ui center aligned middle aligned grid"
+      style={
+        Object {
+          "height": "100%",
+        }
+      }
+    >
+      <div
+        className="column"
+        style={
+          Object {
+            "marginTop": 100,
+            "maxWidth": 450,
+          }
+        }
+      >
+        <h2
+          className="ui teal center aligned header"
+        >
+          Log-in to your account
+        </h2>
+        <form
+          action={undefined}
+          className="ui large form"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ui stacked segment"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui fluid left icon input"
+                content={undefined}
+              >
+                <input
+                  disabled={undefined}
+                  onChange={[Function]}
+                  placeholder="Username"
+                  required={undefined}
+                  tabIndex={undefined}
+                  type="text"
+                />
+                <i
+                  aria-hidden="true"
+                  className="user icon"
+                />
+              </div>
+            </div>
+            <div
+              className="field"
+            >
+              <div
+                className="ui fluid left icon input"
+                content={undefined}
+              >
+                <input
+                  disabled={undefined}
+                  onChange={[Function]}
+                  placeholder="Password"
+                  required={undefined}
+                  tabIndex={undefined}
+                  type="password"
+                />
+                <i
+                  aria-hidden="true"
+                  className="lock icon"
+                />
+              </div>
+            </div>
+            <button
+              className="ui teal large fluid button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              Login
+            </button>
+          </div>
+        </form>
+        <div
+          className="ui message"
+        >
+          New to us? 
+          <a
+            href="/signup"
+          >
+            Sign Up
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

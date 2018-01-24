@@ -22,7 +22,7 @@ const Login = props => (
         <Menu inverted pointing secondary size='large'>
           <Menu.Item as={Link} to='/'>PostIt</Menu.Item>
           <Menu.Item position='right'>
-            <Button as={Link} to='/login' inverted style={{ marginLeft: '0.5em' }} active>Login</Button>
+            <Button className="sign-in-b" as={Link} to='/login' inverted style={{ marginLeft: '0.5em' }} active>Login</Button>
             <Button as={Link} to='/signup' inverted style={{ marginLeft: '0.5em' }}>Sign up</Button>
           </Menu.Item>
         </Menu>
