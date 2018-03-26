@@ -1,6 +1,6 @@
 export default {
   loading: false,
-  userAuth: { cookie: null, isAuthenticated: null },
+  userAuth: { cookie: localStorage.getItem('token'), isAuthenticated: !!localStorage.getItem('token')},
   groups: [],
   activeGroup: {
     // id: null,

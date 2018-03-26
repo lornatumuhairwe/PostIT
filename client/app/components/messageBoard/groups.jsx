@@ -17,6 +17,13 @@ class Groups extends React.Component {
     }
   }
 
+  logout () {
+    localStorage.removeItem('token');
+    return (
+      <Redirect to="/login" />
+    );
+  }
+
   renderMessages() {
     if (this.props.messages) {
       console.log('component messages', this.props.messages);
@@ -47,8 +54,8 @@ class Groups extends React.Component {
             <Menu inverted pointing secondary size='large'>
               <Menu.Item as={Link} to='/'>PostIt</Menu.Item>
               <Menu.Item position='right'>
-                <Button as={Link} to='/login' inverted style={{ marginLeft: '0.5em' }} active>Muhairwe</Button>
-                <Button as={Link} to='/signup' inverted style={{ marginLeft: '0.5em' }}>Logout</Button>
+                <Button inverted style={{ marginLeft: '0.5em' }} active>Muhairwe</Button>
+                <Button as={Link} to='/login' inverted style={{ marginLeft: '0.5em' }} onClick={this.logout}>Logout</Button>
               </Menu.Item>
             </Menu>
           </Container>

@@ -45,14 +45,15 @@ class LoginContainer extends React.Component {
       return (
         <Redirect to={from} />
       );
+    } else {
+      return (
+        <Login
+          handleUsernameChange={this.handleUsernameChange}
+          handlePasswordChange={this.handlePasswordChange}
+          handleSignIn={this.handleSignIn}
+        />
+      );
     }
-    return (
-      <Login
-        handleUsernameChange={this.handleUsernameChange}
-        handlePasswordChange={this.handlePasswordChange}
-        handleSignIn={this.handleSignIn}
-      />
-    );
   }
 }
 

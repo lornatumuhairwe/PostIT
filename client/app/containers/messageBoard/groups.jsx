@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Groups from '../../components/messageBoard/groups';
 import { addNewGroupAsync, getUserGroupsAsync } from '../../actions/group';
 import { getActiveGroupAsync, postMessageAsync } from '../../actions/activeGroup';
@@ -60,17 +61,23 @@ class GroupsContainer extends Component {
 
   render() {
     { console.log('groups>>>>>>>>>>: ', this.props); }
-    return (
-      <Groups
-        groups={this.props.groups}
-        handleGroupNameChange={this.handleGroupNameChange}
-        handleAddGroup={this.handleAddGroup}
-        handleGetActiveGroup={this.handleGetActiveGroup}
-        handlePostMessage={this.handlePostMessage}
-        handleGetMessage={this.handleGetMessage}
-        messages={this.props.activeGroup}
-      />
-    );
+    if (this.props.userAuth.isAuthenticated) {
+      return (
+        <Groups
+          groups={this.props.groups}
+          handleGroupNameChange={this.handleGroupNameChange}
+          handleAddGroup={this.handleAddGroup}
+          handleGetActiveGroup={this.handleGetActiveGroup}
+          handlePostMessage={this.handlePostMessage}
+          handleGetMessage={this.handleGetMessage}
+          messages={this.props.activeGroup}
+        />
+      );
+    } else {
+      return (
+        <Redirect to="/login" />
+      );
+    }
   }
 }
 

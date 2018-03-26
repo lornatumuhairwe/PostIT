@@ -28,6 +28,7 @@ export function signUpAsync(credentials) {
       confirmPassword: credentials.confirmPassword,
     }).then((payload) => {
       dispatch(signUpSuccess(payload.data.token));
+      localStorage.setItem('token', payload.data.token);
     }).catch((err) => {
       dispatch(signUpFail(JSON.stringify(err.response.data.message)));
     });
@@ -54,6 +55,7 @@ export function signInAsync(credentials) {
       password: credentials.password
     }).then((payload) => {
       dispatch(signInSuccess(payload.data.token));
+      localStorage.setItem('token', payload.data.token);
     }).catch((err) => {
       dispatch(signInFail(JSON.stringify(err.response.data.message)));
     });
